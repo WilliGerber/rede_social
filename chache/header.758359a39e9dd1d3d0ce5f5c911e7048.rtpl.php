@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars( $title_pagina, ENT_COMPAT, 'UTF-8', FALSE ); ?></title>
     <link rel="stylesheet" href="resources/css/css.css">
-    <link rel="stylesheet" href="resourcer/js/js.min.js">
+
+    <script src="resources/js/jquery/jquery.min.js"></script>
+    <script src="resources/js/jquery.mask/jquery.mask.min.js"></script>
+    <script src="resources/js/js.min.js"></script>
 </head>
 <body>
     <header>

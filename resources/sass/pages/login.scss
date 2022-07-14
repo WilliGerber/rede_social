@@ -1,0 +1,55 @@
+.el-login{
+    padding: 50px 0;
+
+    form{
+        padding: 20px 30px;
+        border: solid 1px #ddd;
+        border-radius: 10px;
+        max-width: 85%;
+        margin: 0 auto;
+        box-shadow: 6px 7px 19px 0px rgba(0,0,0,0.05);
+        display: flex;
+        flex-direction: column;
+
+        @include tablet{
+            padding: 50px 70px;
+            max-width: 600px;
+        }
+
+        legend{
+            font-size: 35px;
+            font-family: 'Montserrat Bold';
+            margin-bottom: 30px;
+        }
+
+        input{
+            border: solid 1px #dbdbdb;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            margin-right: 0;
+            &:focus{
+                outline: none;
+            }
+        }
+
+        p{
+            margin-bottom: 30px;
+            font-size: 14px;
+            a{
+                color: $color_background_btn;
+            }
+        }
+
+        input[type="submit"]{
+            border: none;
+            text-transform: uppercase;
+            font-size: 25px;
+            padding: 15px 35px;
+            height: auto;
+            line-height: 1;
+            border-radius: 10px;
+            text-align: center;
+            margin: 0 auto;
+        }
+    }
+}

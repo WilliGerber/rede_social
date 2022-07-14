@@ -14,6 +14,7 @@ $line_height: 1.3;
 
 /* Fontes
 ----------------------------------------------------------------------------- */
+@import "fonts/montserrat";
 
 /* Padrão
 ----------------------------------------------------------------------------- */
@@ -23,3 +24,7 @@ $line_height: 1.3;
 
 /* Páginas
 ----------------------------------------------------------------------------- */
+@import "pages/login";
+@import "pages/feed/lateral_direita";
+@import "pages/feed/feed";
+@import "pages/feed/lateral_direita";
