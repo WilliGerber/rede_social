@@ -9,6 +9,12 @@ input {
     font-weight: bold;
 }
 
+textarea{
+    &:focus{
+        outline: none;
+    }
+}
+
 input[type="submit"] {
     border: none;
     background-color: $color_background_btn;
