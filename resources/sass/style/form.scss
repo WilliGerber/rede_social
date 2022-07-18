@@ -26,3 +26,18 @@ input[type="submit"] {
         background-color: $color_background_btn_hover;
     }
 }
+
+.btn {
+    border: 0;
+    font-size: 17px;
+    line-height: 1;
+    padding: 13px 17px;
+    border-radius: 7px;
+    background-color: $color_background_btn;
+    color: #fff;
+    cursor: pointer;
+    transition: .25s;
+    &:hover{
+        background-color: $color_background_btn_hover;
+    }
+}

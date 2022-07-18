@@ -17,6 +17,8 @@
             <div class="logo">
                 <img src="resources/images/logo_principal.png" alt="Imagem da Logo Principal">
             </div>
+
+            {if="$header_login == true"}
             <div class="login">
                 <form action="login" method="POST">
                     <input type="email" name="email" placeholder="E-MAIL">
@@ -24,5 +26,8 @@
                     <input type="submit" name="btn" value="Entrar">
                 </form>
             </div>
+            {else}
+                Aqui vem nosso header com pesquisa e menu
+            {/if}
         </div>
     </header>

@@ -31,15 +31,6 @@
                 <a href="#">
                     <img src="resources/images/placeholder.png" alt="">
                 </a>
-            </li><li>
-                <a href="#">
-                    <img src="resources/images/placeholder.png" alt="">
-                </a>
-            </li><li>
-                <a href="#">
-                    <img src="resources/images/placeholder.png" alt="">
-                </a>
-            </li>
         </ul>
     </div>
     <div class="fotos follows">
@@ -75,11 +66,12 @@
                     <img src="resources/images/placeholder.png" alt="">
                 </a>
             </li>
-            <li>
-                <a href="#">
-                    <img src="resources/images/placeholder.png" alt="">
-                </a>
-            </li>
         </ul>
     </div>
+    <div class="footer">
+        <div class="content">
+            <p>Todos os Direitos Reservados {function="date('Y')"}</p>
+        </div>
+    </div>
+
 </section>
