@@ -1,35 +1,43 @@
 <section class="lateral_direita">
+    {if="$mensagens == false"}
+        <div class="form_nova_mensagem">
+            <form action="#" method="post">
+                <textarea name="" id="" cols="30" rows="10" placeholder="Nova Mensagem" maxlength=""></textarea>
+                <input type="submit" name="btn" value="Enviar ">
+            </form>
+        </div>
+    {/if}
     <div class="fotos">
         <p>Fotos</p>
         <ul>
             <li>
                 <a href="#">
-                    <img src="resources/images/placeholder.png" alt="">
+                    <img src="{$url_base}resources/images/placeholder.png" alt="">
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="resources/images/placeholder.png" alt="">
+                    <img src="{$url_base}resources/images/placeholder.png" alt="">
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="resources/images/placeholder.png" alt="">
+                    <img src="{$url_base}resources/images/placeholder.png" alt="">
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="resources/images/placeholder.png" alt="">
+                    <img src="{$url_base}resources/images/placeholder.png" alt="">
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="resources/images/placeholder.png" alt="">
+                    <img src="{$url_base}resources/images/placeholder.png" alt="">
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="resources/images/placeholder.png" alt="">
+                    <img src="{$url_base}resources/images/placeholder.png" alt="">
                 </a>
         </ul>
     </div>
@@ -38,32 +46,32 @@
         <ul>
             <li>
                 <a href="#">
-                    <img src="resources/images/placeholder.png" alt="">
+                    <img src="{$url_base}resources/images/placeholder.png" alt="">
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="resources/images/placeholder.png" alt="">
+                    <img src="{$url_base}resources/images/placeholder.png" alt="">
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="resources/images/placeholder.png" alt="">
+                    <img src="{$url_base}resources/images/placeholder.png" alt="">
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="resources/images/placeholder.png" alt="">
+                    <img src="{$url_base}resources/images/placeholder.png" alt="">
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="resources/images/placeholder.png" alt="">
+                    <img src="{$url_base}resources/images/placeholder.png" alt="">
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="resources/images/placeholder.png" alt="">
+                    <img src="{$url_base}resources/images/placeholder.png" alt="">
                 </a>
             </li>
         </ul>

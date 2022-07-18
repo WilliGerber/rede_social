@@ -1,11 +1,5 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?><div class="conteudo">
-    <section class="publicar">
-        <div class="exibir">
-            <span>Nova Publicação</span>
-            <button class="btn">Publicar</button>
-        </div>
-    </section>
-    <section class="publicacoes">
+<section class="publicacoes">
     <div class="item">
             <div class="topo">
                 <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/person-512.webp" alt="Foto de Fulano de Tal">

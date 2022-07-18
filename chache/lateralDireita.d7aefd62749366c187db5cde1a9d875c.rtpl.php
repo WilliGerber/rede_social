@@ -1,35 +1,43 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?><section class="lateral_direita">
+    <?php if( $mensagens == false ){ ?>
+        <div class="form_nova_mensagem">
+            <form action="#" method="post">
+                <textarea name="" id="" cols="30" rows="10" placeholder="Nova Mensagem" maxlength=""></textarea>
+                <input type="submit" name="btn" value="Enviar ">
+            </form>
+        </div>
+    <?php } ?>
     <div class="fotos">
         <p>Fotos</p>
         <ul>
             <li>
                 <a href="#">
-                    <img src="resources/images/placeholder.png" alt="">
+                    <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/placeholder.png" alt="">
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="resources/images/placeholder.png" alt="">
+                    <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/placeholder.png" alt="">
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="resources/images/placeholder.png" alt="">
+                    <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/placeholder.png" alt="">
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="resources/images/placeholder.png" alt="">
+                    <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/placeholder.png" alt="">
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="resources/images/placeholder.png" alt="">
+                    <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/placeholder.png" alt="">
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="resources/images/placeholder.png" alt="">
+                    <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/placeholder.png" alt="">
                 </a>
         </ul>
     </div>
@@ -38,32 +46,32 @@
         <ul>
             <li>
                 <a href="#">
-                    <img src="resources/images/placeholder.png" alt="">
+                    <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/placeholder.png" alt="">
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="resources/images/placeholder.png" alt="">
+                    <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/placeholder.png" alt="">
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="resources/images/placeholder.png" alt="">
+                    <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/placeholder.png" alt="">
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="resources/images/placeholder.png" alt="">
+                    <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/placeholder.png" alt="">
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="resources/images/placeholder.png" alt="">
+                    <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/placeholder.png" alt="">
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="resources/images/placeholder.png" alt="">
+                    <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/placeholder.png" alt="">
                 </a>
             </li>
         </ul>

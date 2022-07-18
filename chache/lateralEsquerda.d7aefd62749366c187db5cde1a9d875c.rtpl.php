@@ -1,21 +1,29 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?><section class="lateral_esquerda">
     <div class="topo">
-        <img src="resources/images/person-512.webp" alt="Foto de Fulano de Tal">
+        <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/person-512.webp" alt="Foto de Fulano de Tal">
         <div class="info">
             <p>Fulano de Tal</p>
             <button class="btn-seguir">Seguir</button>
         </div>
     </div>
-    <div class="links">
-        <ul>
-            <li>Mensagens <span>(2)</span></li>
-            <li>Configurações <span></span></li>
-         </ul>
-    </div>
-    <div class="form_about">
-        <form action="#" method="post">
-            <textarea name="" id="" cols="30" rows="10" placeholder="Quem sou eu" maxlength="160"></textarea>
-            <input type="submit" name="btn" value="Salvar">
-        </form>
-    </div>
+
+    <?php if( $mensagens == true ){ ?>
+        <div class="links">
+            <ul>
+                <li><a href="#">Mensagens <span>(2)</span></a></li>
+            </ul>
+        </div>
+        <div class="form_about">
+            <form action="#" method="post">
+                <textarea name="" id="" cols="30" rows="10" placeholder="Quem sou eu" maxlength="160"></textarea>
+                <input type="submit" name="btn" value="Salvar">
+            </form>
+        </div>
+    <?php }else{ ?>
+        <div class="form_about">
+            <form action="#" method="post">
+                <textarea name="" id="" cols="30" rows="10" placeholder="Quem é ele" readonly="readonly"></textarea>
+            </form>
+        </div>
+    <?php } ?>
 </section>

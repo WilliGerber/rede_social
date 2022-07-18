@@ -65,6 +65,12 @@
                 &:nth-last-child(1){
                     margin-bottom: 0px;
                 }
+                a {
+                    color: #b8b8b8;
+                    &:hover {
+                        color: $color_destaque
+                    }
+                }
             }
         }
     }

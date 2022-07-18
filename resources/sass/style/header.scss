@@ -55,5 +55,88 @@ header {
                 }
             }
         }
+        .left {
+            width: calc(100%);
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            @include desktop {
+                width: calc(100% - 290px);
+            }
+            .pesquisa {
+                width: calc(100% - 38px);
+                @include desktop {
+                    width: auto;
+                }
+                form {
+                    max-width: 250px;
+                    display: inline-flex;
+                    width: 100%;
+                    input[type="text"] {
+                        padding-right: 52px;
+                        width: 100%;
+                        margin: 0;
+                        color: #8a8a8a;
+                        border-radius: 10px 15px 15px 10px;
+                        font-size: 14px;
+                        line-height: 0;
+                    }
+                    input[type="submit"] {
+                        margin: 0;
+                        margin-left: -47px;
+                        font-size: 25px;
+                        font-family: 'Montserrat regular';
+                    }
+                }
+            }
+            .pessoal {
+                display: inline-flex;
+                align-items: center;
+                width: auto;
+                margin-top: 15px;
+                justify-content: center;
+                .menu {
+                    position: relative;
+                    padding: 10px;
+                    
+                    ul {
+                        position: absolute;
+                        background-color: #fff;
+                        right: calc(100% - 30px);
+                        padding: 10px 15px;
+                        box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.1);
+                        top: 100%;
+                        opacity: 0;
+                        visibility: hidden;
+                        li {
+                            padding: 10px 0;
+                            a {
+                                color: #7b7b7b;
+                                font-size: 14px;
+                                font-family: 'Montserrat bold';
+                                &:hover {
+                                    color: $color_destaque;
+                                }
+                            }
+                        }
+                    }
+                    &:hover {
+                        ul {
+                            opacity: 1;
+                            visibility: visible;
+                        }
+                    }
+                }
+                .foto {
+                    max-width: 50px;
+                    border-radius: 50%;
+                    background-color: #dbdbdb;
+                    display: none;
+                    @include desktop {
+                        display: block;
+                    }
+                }
+            }
+        }
     }
 }

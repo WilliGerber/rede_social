@@ -4,6 +4,32 @@
     @include desktop{
         width: 22.85%;
     }
+    .form_nova_mensagem {
+        width: 100%;
+        margin-bottom: 25px;
+        form{
+            position: relative;
+            textarea{
+                resize: none;
+                border: 1px solid #dbdbdb;
+                width: 100%;
+                padding: 10px 9px;
+                font-size: 16px;
+                color: #b8b8b8;
+                font-family: 'Montserrat Regular';
+                height: 150px;
+                border-radius: 0 0 10px 0;
+            }
+            input[type="submit"]{
+                margin-right: 0;
+                display: block;
+                margin-top: -42px;
+                z-index: 10;
+                position: absolute;
+                right: 0;
+            }
+        }
+    }
     .fotos{
         border: 1px solid #dbdbdb;
         padding: 20px 30px;
