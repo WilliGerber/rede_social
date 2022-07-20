@@ -9,7 +9,9 @@ class HomeController
     private $default = array(
         'footer' => true,
         'header_login' => false,
-        'mensagens' => true,
+        'links' => true,
+        'page_mensagens' => false,
+
     );
 
     function __construct() {
@@ -55,10 +57,11 @@ class HomeController
     public function feed() {
         $this->default['footer'] = false;
         $info = array(
-            'title_pagina' => 'Página de Login',
+            'title_pagina' => 'Seu Feed',
             'header_login' => $this->default['header_login'],
             'url_base' => URL_BASE,
-            'mensagens' => $this->default['mensagens'],
+            'links' => $this->default['links'],
+            'page_mensagens' => $this->default['page_mensagens'],
         );
         $this->setTpl('header', $info);
         $this->setTpl('feed/inicioCentral', array('classPrincipal' => 'feed'));
@@ -75,7 +78,8 @@ class HomeController
             'title_pagina' => 'Feed de '.$nome,
             'header_login' => $this->default['header_login'],
             'url_base' => URL_BASE,
-            'mensagens' => false,
+            'links' => false,
+            'page_mensagens' => $this->default['page_mensagens'],
         );
         $this->setTpl('header', $info);
         $this->setTpl('feed/inicioCentral', array('classPrincipal' => 'feed'));
@@ -90,7 +94,8 @@ class HomeController
             'title_pagina' => 'Configurações',
             'header_login' => $this->default['header_login'],
             'url_base' => URL_BASE,
-            'mensagens' => $this->default['mensagens'],
+            'links' => $this->default['links'],
+            'page_mensagens' => $this->default['page_mensagens'],
         );
         $this->setTpl('header', $info);
         $this->setTpl('feed/inicioCentral', array('classPrincipal' => 'configuracoes'));
@@ -99,29 +104,36 @@ class HomeController
         $this->setTpl('feed/finalCentral');
     }
 
-    public function search()
-    {
+    public function search(){
+        $this->default['footer'] = false;
         $info = array(
             'title_pagina' => 'Pesquisa',
             'header_login' => $this->default['header_login'],
             'url_base' => URL_BASE,
-            'mensagens' => $this->default['mensagens'],
+            'links' => $this->default['links'],
+            'page_mensagens' => $this->default['page_mensagens'],
         );
         $this->setTpl('header', $info);
+        $this->setTpl('feed/inicioCentral', array('classPrincipal' => 'search'));
+        $this->setTpl('feed/lateralEsquerda');
         $this->setTpl('search');
-
+        $this->setTpl('feed/lateralDireita');
+        $this->setTpl('feed/finalCentral');
     }
     
-    public function mensagens()
-    {
+    public function mensagens(){
         $info = array(
-            'title_pagina' => 'Mensagens',
+            'title_pagina' => 'Minhas mensagens',
             'header_login' => $this->default['header_login'],
             'url_base' => URL_BASE,
-            'mensagens' => $this->default['mensagens'],
+            'links' => $this->default['links'],
+            'page_mensagens' => true,
         );
         $this->setTpl('header', $info);
+        $this->setTpl('feed/inicioCentral', array('classPrincipal' => 'mensagens'));
+        $this->setTpl('feed/lateralEsquerda');
         $this->setTpl('mensagens');
+        $this->setTpl('feed/finalCentral');
     }
     
     public function fotos()
@@ -130,7 +142,8 @@ class HomeController
             'title_pagina' => 'Fotos',
             'header_login' => $this->default['header_login'],
             'url_base' => URL_BASE,
-            'mensagens' => $this->default['mensagens'],
+            'links' => $this->default['links'],
+            'page_mensagens' => $this->default['page_mensagens'],
         );
         $this->setTpl('header', $info);
         $this->setTpl('fotos');

@@ -1,5 +1,5 @@
 <section class="lateral_direita">
-    {if="$mensagens == false"}
+    {if="$links == false"}
         <div class="form_nova_mensagem">
             <form action="#" method="post">
                 <textarea name="" id="" cols="30" rows="10" placeholder="Nova Mensagem" maxlength=""></textarea>

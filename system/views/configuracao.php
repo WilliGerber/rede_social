@@ -2,7 +2,7 @@
     <section class="configuracoes">
         <form action="#" method="post" enctype="multipart/form-data">
             <label for="campo-img">
-                <img src="{$url_base}resources/images/person-512.webp" alt="Foto de Pefil">
+                <img src="{$url_base}resources/images/person-512.webp" alt="Foto de Pefil" id="img-config">
                 <input type="file" id="campo-img" name="image">
             </label>
             <div class="nome">

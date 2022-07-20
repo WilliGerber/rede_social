@@ -98,4 +98,46 @@
             }
         }
     }
+    .lista_mensagens {
+        width: 100%;
+        .item {
+            border: 1px solid #dbdbdb;
+            padding: 20px 15px;
+            margin-bottom: 10px;
+            display: inline-flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            transition: .25s;
+            cursor: pointer;
+            &:hover {
+                background-color: #f1f1f1;
+            }
+            .foto {
+                margin-right: 15px;
+                width: 45px;
+                height: 60px;
+                img{
+                    width: 100%;
+                    background-color: #009bdb;
+                    border-radius: 50%;
+                    display: block;
+                }
+            }
+            .info {
+                width: calc(100% - 60px);
+                .nome {
+                    margin: 0 0 5px 0;
+                    line-height: 1;
+                    font-size: 14px;
+                    font-family: 'Montserrat Medium';
+                    color: #acacac;
+                }
+                .bio {
+                    font-size: 14px;
+                    color: #4b4b4b;
+                    font-family: 'Montserrat Regular';
+                }
+            }
+        }
+    }
 }

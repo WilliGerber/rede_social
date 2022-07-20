@@ -9,4 +9,21 @@ $(document).ready(function(){
     $('.mixed').mask('AAA 000-S0S');
     $('.cpf').mask('000.000.000-00', {reverse: true});
     $('.money').mask('000.000.000.000.000,00', {reverse: true});
+
+  var reader = new FileReader();
+  reader.onload = function (e) {
+    $('#img-config').css('background-image', "url("+e.target.result+")");
+    $('#img-config').attr('src',"");
+   }
+
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  $("#campo-img").change(function(){
+    readURL(this);
   });
+
+});

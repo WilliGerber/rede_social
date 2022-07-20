@@ -1,4 +1,8 @@
 .feed{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
     .conteudo{
         width: 100%;
         padding: 25px 0;
