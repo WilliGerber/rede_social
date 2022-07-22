@@ -15,12 +15,14 @@
     <header>
         <div class="content">
             <div class="logo">
-                <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/logo_principal.png" alt="Imagem da Logo Principal">
+                <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>feed">
+                    <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/logo_principal.png" alt="Imagem da Logo Principal">
+                </a>
             </div>
 
             <?php if( $header_login == true ){ ?>
             <div class="login">
-                <form action="login" method="POST">
+                <form class="form_ajax" action="login" method="POST">
                     <input type="email" name="email" placeholder="E-MAIL">
                     <input type="password" name="password" placeholder="SENHA">
                     <input type="submit" name="btn" value="Entrar">
@@ -29,7 +31,7 @@
             <?php }else{ ?>
             <div class="left">
                 <div class="pesquisa">
-                    <form action="pesquisa" method="get">
+                    <form action="search" method="get">
                         <input type="text" name="q" placeholder="pesquisar">
                         <input type="submit" value="?">
                     </form>
@@ -42,7 +44,9 @@
                             <li><a href="#">Sair</a></li>
                         </ul>
                     </div>
-                    <img class="foto" src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/person-512.webp" alt="">
+                    <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>feed">
+                        <img class="foto" src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/person-512.webp" alt="">
+                    </a>
                 </div>
             </div>
             <?php } ?>

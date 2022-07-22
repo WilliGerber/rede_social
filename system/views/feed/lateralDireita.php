@@ -1,42 +1,44 @@
 <section class="lateral_direita">
     {if="$links == false"}
         <div class="form_nova_mensagem">
-            <form action="#" method="post">
+            <form class="form_ajax" action="{$url_base}nova_mensagem" method="post">
                 <textarea name="" id="" cols="30" rows="10" placeholder="Nova Mensagem" maxlength=""></textarea>
                 <input type="submit" name="btn" value="Enviar ">
             </form>
         </div>
     {/if}
     <div class="fotos">
-        <p>Fotos</p>
+        <a href="{$url_base}fotos">
+            <p>Fotos</p>
+        </a>
         <ul>
             <li>
-                <a href="#">
+                <a href="{$url_base}fotos">
                     <img src="{$url_base}resources/images/placeholder.png" alt="">
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{$url_base}fotos">
                     <img src="{$url_base}resources/images/placeholder.png" alt="">
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{$url_base}fotos">
                     <img src="{$url_base}resources/images/placeholder.png" alt="">
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{$url_base}fotos">
                     <img src="{$url_base}resources/images/placeholder.png" alt="">
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{$url_base}fotos">
                     <img src="{$url_base}resources/images/placeholder.png" alt="">
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{$url_base}fotos">
                     <img src="{$url_base}resources/images/placeholder.png" alt="">
                 </a>
         </ul>
@@ -45,32 +47,32 @@
     <p>Seguindo</p>
         <ul>
             <li>
-                <a href="#">
+                <a href="{$url_base}feed/willi">
                     <img src="{$url_base}resources/images/placeholder.png" alt="">
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{$url_base}feed/willi">
                     <img src="{$url_base}resources/images/placeholder.png" alt="">
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{$url_base}feed/willi">
                     <img src="{$url_base}resources/images/placeholder.png" alt="">
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{$url_base}feed/willi">
                     <img src="{$url_base}resources/images/placeholder.png" alt="">
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{$url_base}feed/willi">
                     <img src="{$url_base}resources/images/placeholder.png" alt="">
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{$url_base}feed/willi">
                     <img src="{$url_base}resources/images/placeholder.png" alt="">
                 </a>
             </li>

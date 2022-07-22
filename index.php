@@ -10,6 +10,9 @@ $app->get('/configuracao', '\DEV\Controllers\HomeController:configuracao');
 $app->get('/mensagens', '\DEV\Controllers\HomeController:mensagens');
 $app->get('/fotos', '\DEV\Controllers\HomeController:fotos');
 $app->get('/search', '\DEV\Controllers\HomeController:search');
+
+$app->post('/cadastrar', '\DEV\Controllers\UserController:cadastrar');
+
 $app->run();
 
 ?>

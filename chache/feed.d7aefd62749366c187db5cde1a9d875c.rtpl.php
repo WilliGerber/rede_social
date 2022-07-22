@@ -4,12 +4,27 @@
             <span>Nova Publicação</span>
             <button class="btn">Publicar</button>
         </div>
+        <div class="lightbox">
+            <span class="close"></span>
+            <form class="form_ajax" action="{url_base}publicar" method="post" enctype="multipart/form-data">
+                <textarea name="mensagem" placeholder="Nova Publicação" id="" cols="30" rows="10"></textarea>
+                <label for="imagem">
+                    <span>Imagens</span>
+                    <input id="imagem" type="file" name="imagem[]" multiple="multiple" accept="image/*">
+                </label>
+                <input type="submit" value="Publicar">
+            </form>
+        </div>
     </section>
     <section class="publicacoes">
     <div class="item">
             <div class="topo">
-                <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/person-512.webp" alt="Foto de Fulano de Tal">
-                <span>Fulano de Tal</span>
+                <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>feed/willi">
+                    <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/person-512.webp" alt="Foto de Fulano de Tal">
+                </a>
+                <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>feed/willi">
+                    <span>Fulano de Tal</span>
+                </a>
             </div>
             <div class="info">
                 <div class="texto">

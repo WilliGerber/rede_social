@@ -1,6 +1,6 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?><div class="conteudo">
     <section class="configuracoes">
-        <form action="#" method="post" enctype="multipart/form-data">
+        <form class="form_ajax" action="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>configuracao" method="post" enctype="multipart/form-data">
             <label for="campo-img">
                 <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/person-512.webp" alt="Foto de Pefil" id="img-config">
                 <input type="file" id="campo-img" name="image">

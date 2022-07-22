@@ -56,6 +56,11 @@ body{
     font-family: $font_family;
     line-height: $line_height;
     overflow-x: hidden;
+	&.active-lightbox {
+		width: 100vw;
+		height: 100vh;
+		overflow: hidden;
+	}
 }
 a{
     color: $color;

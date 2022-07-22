@@ -1,8 +1,12 @@
 <section class="lateral_esquerda">
     <div class="topo">
-        <img src="{$url_base}resources/images/person-512.webp" alt="Foto de Fulano de Tal">
+        <a href="{$url_base}feed/willi">
+            <img src="{$url_base}resources/images/person-512.webp" alt="Foto de Fulano de Tal">
+        </a>
         <div class="info">
-            <p>Fulano de Tal</p>
+            <a href="{$url_base}feed/willi">
+                <p>Fulano de Tal</p>
+            </a>
             <button class="btn-seguir">Seguir</button>
         </div>
     </div>
@@ -47,18 +51,24 @@
         {if="$links == true"}
             <div class="links">
                 <ul>
-                    <li><a href="/rede_social/mensagens">Mensagens <span>(2)</span></a></li>
+                    <li><a href="{$url_base}mensagens">Mensagens<span>(2)</span></a></li>
+                </ul>
+                <ul>
+                    <li><a href="{$url_base}configuracao">Configurações</a></li>
+                </ul>
+                <ul>
+                    <li><a href="{$url_base}configuracao">Fotos</a></li>
                 </ul>
             </div>
             <div class="form_about">
-                <form action="#" method="post">
+                <form class="form_ajax" action="{$url_base}quem_sou_eu" method="post">
                     <textarea name="" id="" cols="30" rows="10" placeholder="Quem sou eu" maxlength="160"></textarea>
                     <input type="submit" name="btn" value="Salvar">
                 </form>
             </div>
         {else}
             <div class="form_about">
-                <form action="#" method="post">
+                <form>
                     <textarea name="" id="" cols="30" rows="10" placeholder="Quem é ele" readonly="readonly"></textarea>
                 </form>
             </div>

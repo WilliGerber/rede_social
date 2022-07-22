@@ -136,17 +136,19 @@ class HomeController
         $this->setTpl('feed/finalCentral');
     }
     
-    public function fotos()
-    {
+    public function fotos(){
         $info = array(
-            'title_pagina' => 'Fotos',
+            'title_pagina' => 'Minhas Fotos',
             'header_login' => $this->default['header_login'],
             'url_base' => URL_BASE,
             'links' => $this->default['links'],
             'page_mensagens' => $this->default['page_mensagens'],
         );
         $this->setTpl('header', $info);
+        $this->setTpl('feed/inicioCentral', array('classPrincipal' => 'minhas_fotos'));
+        $this->setTpl('feed/lateralEsquerda');
         $this->setTpl('fotos');
+        $this->setTpl('feed/finalCentral');
     }
 
 }

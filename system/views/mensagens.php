@@ -2,8 +2,12 @@
     <div class="msgs">
         <div class="conteudo_mensagem">
             <div class="topo">
-                <img src="{$url_base}resources/images/person-512.webp" alt="">
-                <p class="nome">Jenifer Ludwig</p>
+                <a href="{$url_base}fedd/willi">
+                    <img src="{$url_base}resources/images/person-512.webp" alt="">
+                </a>
+                <a href="{$url_base}fedd/willi">
+                    <p class="nome">Jenifer Ludwig</p>
+                </a>    
             </div>
             <hr>
             <div class="lista_mensagens">

@@ -1,0 +1,64 @@
+.minhas_fotos {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    .conteudo {
+        width: 100%;
+        padding: 25px 0;
+        @include desktop {
+            width: 73.57%;
+        }
+        .fotos {
+            width: 100%;
+            display: block;
+            border: 1px solid #dfdfdf;
+            padding: 20px 35px;
+            .cover {
+                text-align: center;
+                width: 100%;
+                display: flex;
+
+                margin-bottom: 30px;
+                align-items: center;
+                justify-content: center;
+                .img_cover {
+                    background-color: #dfdfdf;
+                    max-width: 100%;
+                    max-width: 350px;
+                    max-height: 350px;
+                }
+            }
+            .thumbs {
+                width: 100%;
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                column-gap: 5%;
+                row-gap: 20px;
+                max-height: 350px;
+                overflow-y: auto;
+                @include tablet {
+                    grid-template-columns: repeat(5, 1fr);
+                }
+                @include desktop {
+                    grid-template-columns: repeat(7, 1fr);
+                }
+                .img_thumb {
+                    cursor: pointer;
+                    border: 2px solid #fff;
+                    padding: 2px;
+                    width: 100%;
+                    height: 100%;
+                    background-color: #dfdfdf;
+                    transition: .30s;
+                    &:hover {
+                        border: 2px solid $color_destaque;
+                    }
+                    &.active {
+                        border: 2px solid $color_destaque;
+
+                    }
+                }
+            }
+        }
+    }
+}

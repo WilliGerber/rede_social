@@ -1,5 +1,5 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?><section class="el-login">
-    <form action="/" method="post">
+    <form class="form_ajax" action="cadastrar" method="POST">
         <legend>Cadastrar</legend>
         <input type="text" name="name" placeholder="Nome">
         <input type="email" name="email" placeholder="E-mail">
