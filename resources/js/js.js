@@ -54,3 +54,40 @@ $(document).ready(function(){
     $('body').removeClass('active-lightbox');
   })
 });
+
+// Form ajax
+$(document).ready(function() {
+  if(!jQuery().ajaxForm) {
+    return;
+  }
+
+  if($('form.form_ajax').length) {
+    $('form.form_ajax').on("submit", function(e) {
+      e.preventDefault();
+      var form = $(this);
+
+      var alerta = form.children('.alerta');
+
+      form.ajaxSubmit({
+        dataType:'json'
+        ,success: function(res) {
+          if(res.msg) {
+            alerta.html(res.msg);
+          }
+          if(res.status != '0') {
+            alerta.addClass('success');
+          } else {
+            alerta.addClass('error');
+          }
+          if(res.page_redirect) {
+            window.location = res.page_redirect;
+          }
+          if(res.form_reset) {
+            form[0].reset();
+          }
+        }
+      });
+      return false;
+    });
+  }
+});

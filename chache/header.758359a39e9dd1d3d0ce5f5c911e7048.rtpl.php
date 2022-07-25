@@ -9,6 +9,7 @@
 
     <script src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/js/jquery/jquery.min.js"></script>
     <script src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/js/jquery.mask/jquery.mask.min.js"></script>
+    <script src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/js/jquery.form/jquery.form.min.js"></script>
     <script src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/js/js.min.js"></script>
 </head>
 <body>
@@ -22,10 +23,11 @@
 
             <?php if( $header_login == true ){ ?>
             <div class="login">
-                <form class="form_ajax" action="login" method="POST">
+                <form class="form_ajax" action="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>login" method="POST">
                     <input type="email" name="email" placeholder="E-MAIL">
                     <input type="password" name="password" placeholder="SENHA">
                     <input type="submit" name="btn" value="Entrar">
+                    <div class="alerta"></div>
                 </form>
             </div>
             <?php }else{ ?>

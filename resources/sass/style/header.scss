@@ -30,6 +30,7 @@ header {
         }
         .login{
             form{
+                max-width: 530px;
                 @include desktop {
                     display: inline-flex;
                     flex-wrap: wrap;
@@ -51,6 +52,23 @@ header {
                     @include desktop{
                         margin: 0;
                         width: auto;
+                    }
+                }
+                .alerta {
+                    width: 100%;
+                    margin-top: 5px;
+                    padding: 0px;
+                    font-size: 14px;
+                    color: #fff;
+                    display: none;
+                    text-align: left;
+                    &.success {
+                        background-color: transparent;
+                        display: block;
+                    }
+                    &.error {
+                        background-color: transparent;
+                        display: block;
                     }
                 }
             }

@@ -7,5 +7,6 @@
         <input type="password" name="password" placeholder="Senha">
         <p>Ao se cadastrar você concorda com os <a href="#">termos e polítca</a></p>
         <input type="submit" name="btn" value="Cadastrar">
+        <div class="alerta"></div>
     </form>
 </section>

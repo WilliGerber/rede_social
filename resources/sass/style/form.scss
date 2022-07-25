@@ -41,3 +41,21 @@ input[type="submit"] {
         background-color: $color_background_btn_hover;
     }
 }
+
+.alerta {
+    width: 100%;
+    margin-top: 15px;
+    padding: 10px;
+    font-size: 14px;
+    color: #686868;
+    text-align: center;
+    display: none;
+    &.success {
+        background-color: #8bff5daf;
+        display: block;
+    }
+    &.error {
+        background-color: #ff3434af;
+        display: block;
+    }
+}

@@ -12,6 +12,8 @@ $app->get('/fotos', '\DEV\Controllers\HomeController:fotos');
 $app->get('/search', '\DEV\Controllers\HomeController:search');
 
 $app->post('/cadastrar', '\DEV\Controllers\UserController:cadastrar');
+$app->post('/login', '\DEV\Controllers\UserController:user_login');
+
 
 $app->run();
 
