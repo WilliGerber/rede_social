@@ -46,8 +46,8 @@
                             <li><a href="{$url_base}logout">Sair</a></li>
                         </ul>
                     </div>
-                    <a href="{$url_base}feed">
-                        <img class="foto" src="{$url_base}resources/images/person-512.webp" alt="">
+                    <a href="{$url_base}feed/{$user_logedIn['profile_url']}">
+                        <img class="foto" src="{$user_logedIn['user_avatar']}" alt="">
                     </a>
                 </div>
             </div>

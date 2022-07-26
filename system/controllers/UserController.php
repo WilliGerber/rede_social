@@ -83,6 +83,19 @@
 
                 $return = $this->login($email, $password);
 
+                // gerar url do perfil
+                $profileUrl = $this->user->profileUrlGenerator($name, $_SESSION['user_logedIn']['id']);
+
+                // Update database profileUrl
+                $values = array(
+                    'profile_url' => $profileUrl
+                );
+                $where = array(
+                    'id' => (int)$_SESSION['user_logedIn']['id']    
+                );
+
+                $this->user->updateUser($values, $where);
+
                 if($return) {
                     $response_return['status'] = '1';
                     $response_return['page_redirect'] = URL_BASE.'feed';
@@ -100,6 +113,7 @@
             if($email !== '' && $password !== '') {
                 $campos = array(
                     "id",
+                    "profile_url",
                     "user_name",
                     "user_lastName",
                     "user_email",
@@ -145,6 +159,31 @@
     
             header("Location: ".URL_BASE);
             exit();
+        }
+
+        public function about_me($request, $response, $args) {
+            $bio = $request->getParsedBodyParam('about_me');
+
+
+            // atualizando form about_me
+            if($bio != "" && $bio != null) {
+                $values = array(
+                    'user_description' => $bio
+                );
+                $where = array(
+                    'id' => (int)$_SESSION['user_logedIn']['id']    
+                );
+
+                $this->user->updateUser($values, $where);
+
+                $response_return['status'] = '1';
+                $response_return['msg'] = 'Atualizado com sucesso!';
+                return $response->withJson($response_return);
+            } else {
+                $response_return['status'] = '0';
+                $response_return['msg'] = 'Digite sua biografia com até 160 caracteres';
+                return $response->withJson($response_return);
+            }
         }
     }
 ?>  

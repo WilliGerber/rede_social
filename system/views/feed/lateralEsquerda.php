@@ -1,13 +1,16 @@
 <section class="lateral_esquerda">
     <div class="topo">
-        <a href="{$url_base}feed/willi">
-            <img src="{$user_logedIn['user_avatar']}" alt="Foto de Fulano de Tal">
+        <a href="{$url_base}feed/{$user['profile_url']}">
+            <img src="{$url_base}{$user['user_avatar']}" alt="Foto de Fulano de Tal">
         </a>
         <div class="info">
-            <a href="{$url_base}feed/willi">
-                <p>{$user_logedIn['user_name']}</p>
+            <a href="{$url_base}feed/{$user['profile_url']}">
+                <p>{$user['user_name']}</p>
             </a>
-            <button class="btn-seguir">Seguir</button>
+
+            {if="$user_logedIn['id'] != $user['id']"}
+                <button class="btn-seguir">Seguir</button>
+            {/if}
         </div>
     </div>
 
@@ -61,15 +64,16 @@
                 </ul>
             </div>
             <div class="form_about">
-                <form class="form_ajax" action="{$url_base}quem_sou_eu" method="post">
-                    <textarea name="" id="" cols="30" rows="10" placeholder="Quem sou eu" maxlength="160"></textarea>
+                <form class="form_ajax" action="{$url_base}about_me" method="post">
+                    <textarea name="about_me" id="" cols="30" rows="10" placeholder="Quem sou eu" maxlength="160">{$user['user_description']}</textarea>
                     <input type="submit" name="btn" value="Salvar">
+                    <div class="alerta"></div>
                 </form>
             </div>
         {else}
             <div class="form_about">
                 <form>
-                    <textarea name="" id="" cols="30" rows="10" placeholder="Quem é ele" readonly="readonly"></textarea>
+                    <textarea name="" id="" cols="30" rows="10" placeholder="Quem é ele(a)" readonly="readonly">{$user['user_description']}</textarea>
                 </form>
             </div>
         {/if}

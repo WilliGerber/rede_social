@@ -46,8 +46,8 @@
                             <li><a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>logout">Sair</a></li>
                         </ul>
                     </div>
-                    <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>feed">
-                        <img class="foto" src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/person-512.webp" alt="">
+                    <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>feed/<?php echo htmlspecialchars( $user_logedIn['profile_url'], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                        <img class="foto" src="<?php echo htmlspecialchars( $user_logedIn['user_avatar'], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="">
                     </a>
                 </div>
             </div>

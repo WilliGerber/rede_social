@@ -1,13 +1,16 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?><section class="lateral_esquerda">
     <div class="topo">
-        <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>feed/willi">
-            <img src="<?php echo htmlspecialchars( $user_logedIn['user_avatar'], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="Foto de Fulano de Tal">
+        <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>feed/<?php echo htmlspecialchars( $user['profile_url'], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+            <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?><?php echo htmlspecialchars( $user['user_avatar'], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="Foto de Fulano de Tal">
         </a>
         <div class="info">
-            <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>feed/willi">
-                <p><?php echo htmlspecialchars( $user_logedIn['user_name'], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+            <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>feed/<?php echo htmlspecialchars( $user['profile_url'], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                <p><?php echo htmlspecialchars( $user['user_name'], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
             </a>
-            <button class="btn-seguir">Seguir</button>
+
+            <?php if( $user_logedIn['id'] != $user['id'] ){ ?>
+                <button class="btn-seguir">Seguir</button>
+            <?php } ?>
         </div>
     </div>
 
@@ -61,15 +64,16 @@
                 </ul>
             </div>
             <div class="form_about">
-                <form class="form_ajax" action="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>quem_sou_eu" method="post">
-                    <textarea name="" id="" cols="30" rows="10" placeholder="Quem sou eu" maxlength="160"></textarea>
+                <form class="form_ajax" action="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>about_me" method="post">
+                    <textarea name="about_me" id="" cols="30" rows="10" placeholder="Quem sou eu" maxlength="160"><?php echo htmlspecialchars( $user['user_description'], ENT_COMPAT, 'UTF-8', FALSE ); ?></textarea>
                     <input type="submit" name="btn" value="Salvar">
+                    <div class="alerta"></div>
                 </form>
             </div>
         <?php }else{ ?>
             <div class="form_about">
                 <form>
-                    <textarea name="" id="" cols="30" rows="10" placeholder="Quem é ele" readonly="readonly"></textarea>
+                    <textarea name="" id="" cols="30" rows="10" placeholder="Quem é ele(a)" readonly="readonly"><?php echo htmlspecialchars( $user['user_description'], ENT_COMPAT, 'UTF-8', FALSE ); ?></textarea>
                 </form>
             </div>
         <?php } ?>

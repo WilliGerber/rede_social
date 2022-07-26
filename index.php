@@ -16,6 +16,7 @@ $app->get('/search', '\DEV\Controllers\HomeController:search');
 //UserController post
 $app->post('/cadastrar', '\DEV\Controllers\UserController:cadastrar');
 $app->post('/login', '\DEV\Controllers\UserController:user_login');
+$app->post('/about_me', '\DEV\Controllers\UserController:about_me');
 
 //UserController get
 $app->get('/logout', '\DEV\Controllers\UserController:logout');

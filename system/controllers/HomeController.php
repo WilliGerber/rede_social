@@ -35,9 +35,25 @@ class HomeController
 
         $this->tpl = new Tpl;
 
+        $camposUser = array(
+            "id",
+            "profile_url",
+            "user_name",
+            "user_lastName",
+            "user_email",
+            "user_phone",
+            "user_password",
+            "user_avatar",
+            "user_description",
+            "date_update"
+        );
+
+
         if(isset($_SESSION['user_logedIn']) && $_SESSION['user_logedIn'] != null) {
             $user = new User();
-            $this->user_logedIn = $user->getUser($_SESSION['user_logedIn']);
+            //$this->user_logedIn = $user->getUser($_SESSION['user_logedIn']);
+            $this->user_logedIn = ($user->selectUser($camposUser, array("id" => $_SESSION['user_logedIn']['id']) ))[0];
+ 
         }
     }
 
@@ -60,6 +76,11 @@ class HomeController
     }
 
     public function login() {
+        if(isset($_SESSION['user_logedIn']) && $_SESSION['user_logedIn'] != NULL) {
+            header("Location: ".URL_BASE."feed");
+            exit();
+        }
+
         $info = array(
             'title_pagina' => 'Página de Login',
             'header_login' => true,
@@ -79,8 +100,10 @@ class HomeController
             'url_base' => URL_BASE,
             'links' => $this->default['links'],
             'page_mensagens' => $this->default['page_mensagens'],
+            'user' => $this->user_logedIn,
             'user_logedIn' => $this->user_logedIn,
         );
+
         $this->setTpl('header', $info);
         $this->setTpl('feed/inicioCentral', array('classPrincipal' => 'feed'));
         $this->setTpl('feed/lateralEsquerda');
@@ -92,20 +115,59 @@ class HomeController
     public function feed_usuario($request, $response, $args) {
         UserController::verifyLogin();
 
-        $nome = $args['usuario'];
         $this->default['footer'] = false;
+
+        $profile_url = $args['usuario'];
+
+        // selecionando informacoes do usuario dono do feed
+        if ($this->user_logedIn['profile_url'] === $profile_url) {
+            $profileOwner = $this->user_logedIn;
+        } else {
+            $user = new User;
+
+            $campos = array(
+                "id",
+                "profile_url",
+                "user_name",
+                "user_lastName",
+                "user_email",
+                "user_phone",
+                "user_password",
+                "user_avatar",
+                "user_description",
+                "date_update"
+            );
+            // echo '<pre>';
+            // var_dump($campos);
+            $where = array(
+                'profile_url' => $profile_url
+            );
+
+            $profileOwner = $user->selectUser($campos, $where)[0];
+
+            if ($profileOwner['user_avatar'] == '' || !is_file($profileOwner['user_avatar'])) {
+                $profileOwner['user_avatar'] = /*URL_BASE.*/"resources/images/person-512.webp";
+                
+            } else {
+                $profileOwner['user_avatar'] = /*URL_BASE.*/$profileOwner['user_avatar'];
+            }    
+
+        }
+
         $info = array(
-            'title_pagina' => 'Feed de '.$nome,
+            'title_pagina' => 'Feed de '.$profileOwner['user_name'],
             'header_login' => $this->default['header_login'],
             'url_base' => URL_BASE,
             'links' => false,
             'page_mensagens' => $this->default['page_mensagens'],
+            'user' => $profileOwner,
             'user_logedIn' => $this->user_logedIn,
+
         );
         $this->setTpl('header', $info);
         $this->setTpl('feed/inicioCentral', array('classPrincipal' => 'feed'));
         $this->setTpl('feed/lateralEsquerda');
-        $this->setTpl('feed/feed_usuario', array('nome_usuario' => $nome));
+        $this->setTpl('feed/feed_usuario');
         $this->setTpl('feed/lateralDireita');
         $this->setTpl('feed/finalCentral');
     }    
@@ -119,7 +181,9 @@ class HomeController
             'url_base' => URL_BASE,
             'links' => $this->default['links'],
             'page_mensagens' => $this->default['page_mensagens'],
+            'user' => $this->user_logedIn,
             'user_logedIn' => $this->user_logedIn,
+
         );
         $this->setTpl('header', $info);
         $this->setTpl('feed/inicioCentral', array('classPrincipal' => 'configuracoes'));
@@ -138,7 +202,9 @@ class HomeController
             'url_base' => URL_BASE,
             'links' => $this->default['links'],
             'page_mensagens' => $this->default['page_mensagens'],
+            'user' => $this->user_logedIn,
             'user_logedIn' => $this->user_logedIn,
+
         );
         $this->setTpl('header', $info);
         $this->setTpl('feed/inicioCentral', array('classPrincipal' => 'search'));
@@ -157,7 +223,9 @@ class HomeController
             'url_base' => URL_BASE,
             'links' => $this->default['links'],
             'page_mensagens' => true,
+            'user' => $this->user_logedIn,
             'user_logedIn' => $this->user_logedIn,
+
         );
         $this->setTpl('header', $info);
         $this->setTpl('feed/inicioCentral', array('classPrincipal' => 'mensagens'));
@@ -175,7 +243,9 @@ class HomeController
             'url_base' => URL_BASE,
             'links' => $this->default['links'],
             'page_mensagens' => $this->default['page_mensagens'],
+            'user' => $this->user_logedIn,
             'user_logedIn' => $this->user_logedIn,
+
         );
         $this->setTpl('header', $info);
         $this->setTpl('feed/inicioCentral', array('classPrincipal' => 'minhas_fotos'));
