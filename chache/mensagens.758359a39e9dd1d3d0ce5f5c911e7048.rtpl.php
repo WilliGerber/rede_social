@@ -2,8 +2,12 @@
     <div class="msgs">
         <div class="conteudo_mensagem">
             <div class="topo">
-                <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/person-512.webp" alt="">
-                <p class="nome">Jenifer Ludwig</p>
+                <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>fedd/willi">
+                    <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/person-512.webp" alt="">
+                </a>
+                <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>fedd/willi">
+                    <p class="nome">Jenifer Ludwig</p>
+                </a>    
             </div>
             <hr>
             <div class="lista_mensagens">

@@ -1,11 +1,11 @@
 <section class="lateral_esquerda">
     <div class="topo">
         <a href="{$url_base}feed/willi">
-            <img src="{$url_base}resources/images/person-512.webp" alt="Foto de Fulano de Tal">
+            <img src="{$user_logedIn['user_avatar']}" alt="Foto de Fulano de Tal">
         </a>
         <div class="info">
             <a href="{$url_base}feed/willi">
-                <p>Fulano de Tal</p>
+                <p>{$user_logedIn['user_name']}</p>
             </a>
             <button class="btn-seguir">Seguir</button>
         </div>
@@ -57,7 +57,7 @@
                     <li><a href="{$url_base}configuracao">Configurações</a></li>
                 </ul>
                 <ul>
-                    <li><a href="{$url_base}configuracao">Fotos</a></li>
+                    <li><a href="{$url_base}fotos">Fotos</a></li>
                 </ul>
             </div>
             <div class="form_about">

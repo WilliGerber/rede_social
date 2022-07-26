@@ -33,5 +33,17 @@
         function selectUser($campos, $where):array {
             return $this->select($this->table, $campos, $where);
         }
+
+        function getUser($campos) {
+            if ($campos['user_avatar'] = '' || !is_file($campos['user_avatar'])) {
+                $campos['user_avatar'] = URL_BASE."resources/images/person-512.webp";
+            } else {
+                $campos['user_avatar'] = URL_BASE.$campos['user_avatar'];
+                echo "<pre>";
+                var_dump($campos['user_avatar']);
+            }           
+            
+            return $campos;
+        }
     }
 ?>

@@ -1,11 +1,11 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?><section class="lateral_esquerda">
     <div class="topo">
         <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>feed/willi">
-            <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/person-512.webp" alt="Foto de Fulano de Tal">
+            <img src="<?php echo htmlspecialchars( $user_logedIn['user_avatar'], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="Foto de Fulano de Tal">
         </a>
         <div class="info">
             <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>feed/willi">
-                <p>Fulano de Tal</p>
+                <p><?php echo htmlspecialchars( $user_logedIn['user_name'], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
             </a>
             <button class="btn-seguir">Seguir</button>
         </div>
@@ -57,7 +57,7 @@
                     <li><a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>configuracao">Configurações</a></li>
                 </ul>
                 <ul>
-                    <li><a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>configuracao">Fotos</a></li>
+                    <li><a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>fotos">Fotos</a></li>
                 </ul>
             </div>
             <div class="form_about">

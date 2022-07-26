@@ -42,8 +42,8 @@
                     <div class="menu">
                         <img src="{$url_base}resources/images/setaMenu.png" alt="">
                         <ul>
-                            <li><a href="configuracao">Configurações</a></li>
-                            <li><a href="#">Sair</a></li>
+                            <li><a href="{$url_base}configuracao">Configurações</a></li>
+                            <li><a href="{$url_base}logout">Sair</a></li>
                         </ul>
                     </div>
                     <a href="{$url_base}feed">

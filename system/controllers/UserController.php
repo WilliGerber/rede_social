@@ -95,6 +95,7 @@
                 }
             }
         }
+
         function login($email="", $password="") {
             if($email !== '' && $password !== '') {
                 $campos = array(
@@ -127,6 +128,23 @@
             } else {
                 return false;
             }
+        }
+
+        public static function verifyLogin() {
+            if(!isset($_SESSION['user_logedIn']) || $_SESSION['user_logedIn'] == NULL) {
+                header("Location: ".URL_BASE);
+                exit();
+            }
+        }
+
+        public function logout() {
+            if (isset($_SESSION['user_logedIn'])) {
+                $_SESSION['user_logedIn'] = NULL;
+                unset($_SESSION['user_logedIn']);
+            }
+    
+            header("Location: ".URL_BASE);
+            exit();
         }
     }
 ?>  

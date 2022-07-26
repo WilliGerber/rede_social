@@ -42,8 +42,8 @@
                     <div class="menu">
                         <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/setaMenu.png" alt="">
                         <ul>
-                            <li><a href="configuracao">Configurações</a></li>
-                            <li><a href="#">Sair</a></li>
+                            <li><a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>configuracao">Configurações</a></li>
+                            <li><a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>logout">Sair</a></li>
                         </ul>
                     </div>
                     <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>feed">
