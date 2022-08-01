@@ -5,6 +5,7 @@ use Rain\Tpl;
 use DEV\Controllers\UserController;
 use DEV\User;
 use DEV\Message;
+use DEV\Publish;
 
 if(!isset($_SESSION)) {
     session_start();
@@ -107,6 +108,13 @@ class HomeController
     public function feed() {
         UserController::verifyLogin();
 
+        // $publishes = new Publish;
+        // $result = $publishes->getFeedPublishes((int)$_SESSION['user_logedIn']['id']);
+
+        // echo "<pre>";
+        // var_dump($result);
+        // exit();
+
         $this->default['footer'] = false;
         $info = array(
             'title_pagina' => 'Seu Feed',
@@ -117,6 +125,7 @@ class HomeController
             'user' => $this->user_logedIn,
             'user_logedIn' => $this->user_logedIn,
             'countMessages' => count($this->default['listMessage']),
+            // 'publishes' => $result
         );
 
         $this->setTpl('header', $info);

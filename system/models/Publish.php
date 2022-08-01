@@ -35,5 +35,38 @@
             $params = array(':id_user' => $id);
             return $this->querySelect($sql, $params);
         }
+
+        function getFeedPublishes($id, $limit = 10, $offset = 0){
+            
+            $sql = "SELECT p.*, u.user_name, u.user_lastName, u.user_avatar, u.profile_url FROM ".$this->table." p INNER JOIN users u ON p.id_user = u.id WHERE id_user = :id_user ORDER BY id DESC LIMIT ".$offset.", ".$limit;
+            $params = array(':id_user' => $id);
+            $publishes = $this->querySelect($sql, $params);
+
+            for($i=0; $i < count($publishes); $i++) {
+                if ($publishes[$i]['user_avatar'] == '' || !is_file($publishes[$i]['user_avatar'])) {
+                    $publishes[$i]['user_avatar'] = "resources/images/person-512.webp";
+                    
+                } else {
+                    $publishes[$i]['user_avatar'] =  $publishes[$i]['user_avatar'];
+                }
+
+                $sql = "SELECT foto_path FROM fotos WHERE id_publish = :id_publish ORDER BY id ASC";
+                $params = array(':id_publish' => (int)$publishes[$i]['id']);
+                $fotos = $this->querySelect($sql, $params);
+
+                if (count($fotos) > 0){
+                    $publishes[$i]['fotos'] = $fotos;
+                    // echo "<pre>";
+                    // var_dump($fotos);
+                    // exit();
+                } else {
+                    $publishes[$i]['fotos'] = false;
+                }
+
+                
+            }
+
+            return $publishes;
+        }
     }
 ?>

@@ -54,6 +54,12 @@ $(document).ready(function(){
     $('body').removeClass('active-lightbox');
   })
 
+  if($('.content.feed').length) {
+    var indice_page = $('#indice_page').val();
+    var user_id = $('#user_id').val();
+    alert(user_id);
+  }
+
   if ($('.lista_mensagens').length){
     function getChat() {
       setInterval(function(){
