@@ -194,6 +194,7 @@
             $user['password'] = $request->getParsedBodyParam('password');
             $user['checkPassword'] = $request->getParsedBodyParam('checkPassword');
 
+            
             // Requisição para atualização da imagem
             if($request->getUploadedFiles()){
                 $image = $request->getUploadedFiles()['image'];
@@ -220,16 +221,11 @@
                 'profile_url' => $user['profile_url'],
             );
 
-            
-
             // Atualização senha
             if($user['password'] != "") {
-                $values['password'] = password_hash($user['password'], PASSWORD_DEFAULT, ['cost'=>12]);
+                $values['user_password'] = password_hash($user['password'], PASSWORD_DEFAULT, ['cost'=>12]);
                 // $values['password'] = $user['password'];
             }
-
-            
-
 
             // Upload de imagem
             if($image) {
@@ -245,27 +241,22 @@
             }
 
             $where = array(
-                'id' => (int)$_SESSION['user_logedIn']['id']    
+                'id' => (int)$_SESSION['user_logedIn']['id'],   
             );
 
-            echo "<pre>";
-            var_dump($values);
-
             $this->user->updateUser($values, $where);
-            $user = $this->user->selectUser($values, $where);
             
             if($user['password'] !== "") {
-                // $this->login($user['email'], $user['password']);
+                $this->login($user['email'], $user['password']);
             } else {
                 $result = $this->user->selectUser($values, $where);
                 $this->user->setData($result);
-                // $_SESSION['user_logedIn'] = $this->user->getValues();
+                $_SESSION['user_logedIn'] = $this->user->getValues();
             }
 
             $response_return['status'] = 1;
-            // echo "<pre>";
-            // var_dump($this);
-            // $response_return['page_redirect'] = URL_BASE."configuracao"; 
+
+            $response_return['page_redirect'] = URL_BASE."configuracao"; 
             return $response->withJson($response_return);
         }
         

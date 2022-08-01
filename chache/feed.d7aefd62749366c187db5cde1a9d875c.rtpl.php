@@ -6,7 +6,7 @@
         </div>
         <div class="lightbox">
             <span class="close"></span>
-            <form class="form_ajax" action="{url_base}publicar" method="post" enctype="multipart/form-data">
+            <form class="form_ajax" action="{url_base}publish" method="post" enctype="multipart/form-data">
                 <textarea name="mensagem" placeholder="Nova Publicação" id="" cols="30" rows="10"></textarea>
                 <label for="imagem">
                     <span>Imagens</span>
