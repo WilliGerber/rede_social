@@ -99,6 +99,7 @@ class Sql {
 
 	public function insert($table, $data)
 	{	
+
 		$sqlColunas = "";
 
 		$data = !is_array($data) ? [$data] : $data;
@@ -110,7 +111,6 @@ class Sql {
 				$sqlColunas .= $key.", ";
 			}
 		}
-		// var_dump($sqlColunas);
 
 		$sqlCampos = "";
 		$sqlValues = "";
@@ -126,11 +126,7 @@ class Sql {
 			}
 			$parans[':'.$key] = $value;			
 		}
-		// var_dump($sqlValues);
 
-		// var_dump($sqlCampos);
-
-		// var_dump("INSERT INTO $table ($sqlColunas) VALUES ($sqlCampos)", $parans);
 		$this->query("INSERT INTO $table ($sqlColunas) VALUES ($sqlCampos)", $parans);
 
 	}

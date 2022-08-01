@@ -6,11 +6,11 @@
         </div>
         <div class="lightbox">
             <span class="close"></span>
-            <form class="form_ajax" action="{url_base}publish" method="post" enctype="multipart/form-data">
-                <textarea name="mensagem" placeholder="Nova Publicação" id="" cols="30" rows="10"></textarea>
+            <form class="form_ajax" action="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>publish" method="post" enctype="multipart/form-data">
+                <textarea name="message" placeholder="Nova Publicação" id="" cols="30" rows="10"></textarea>
                 <label for="imagem">
                     <span>Imagens</span>
-                    <input id="imagem" type="file" name="imagem[]" multiple="multiple" accept="image/*">
+                    <input id="imagem" type="file" name="imagem[]" multiple accept="image/*">
                 </label>
                 <input type="submit" value="Publicar">
             </form>
