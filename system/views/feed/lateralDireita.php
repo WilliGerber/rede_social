@@ -1,9 +1,11 @@
 <section class="lateral_direita">
-    {if="$links == false"}
+    {if="$links == false && $user_logedIn['id'] != $user['id']"}
         <div class="form_nova_mensagem">
-            <form class="form_ajax" action="{$url_base}nova_mensagem" method="post">
-                <textarea name="" id="" cols="30" rows="10" placeholder="Nova Mensagem" maxlength=""></textarea>
+            <form class="form_ajax" action="{$url_base}new_message" method="post">
+                <input type="hidden" name="id_user_receive" value="{$user['id']}">
+                <textarea name="msg" id="" cols="30" rows="10" placeholder="Nova Mensagem" maxlength=""></textarea>
                 <input type="submit" name="btn" value="Enviar ">
+                <div class="alerta"></div>
             </form>
         </div>
     {/if}

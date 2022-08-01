@@ -47,7 +47,7 @@ input[type="submit"] {
     margin-top: 15px;
     padding: 10px;
     font-size: 14px;
-    color: #686868;
+    color: #5a5a5a;
     text-align: center;
     display: none;
     &.success {
@@ -55,7 +55,7 @@ input[type="submit"] {
         display: block;
     }
     &.error {
-        background-color: #ff3434af;
+        background-color: #fd5a5a91;
         display: block;
     }
 }

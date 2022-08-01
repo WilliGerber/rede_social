@@ -23,16 +23,20 @@
             $this->insert($this->table, $campos);
         }
         
-        function updateUser($valores, $where) {
-            $this->update($this->table, $valores, $where);
+        function updateUser($values, $where) {
+            $this->update($this->table, $values, $where);
         }
 
         function deleteUser($coluna, $valor) {
             $this->delete($this->table, $coluna, $valor);
         }
 
-        function selectUser($campos, $where):array {
-            return $this->select($this->table, $campos, $where);
+        function selectUser($campos, $where):array { 
+            // echo "<pre>";
+            // var_dump($campos, $where);
+            // exit();
+            $userSelection = $this->select($this->table, $campos, $where);
+            return $userSelection;
         }
 
         function getUser($campos) {
@@ -58,6 +62,7 @@
             $string = strtr($string, $table);
             $string = mb_strtolower($string);
             $string = preg_replace("/[^a-z0-9_\s-]/", "", $string);
+            $string = str_replace(" ", "_", $string);
             return $string.$id;
         }
     }

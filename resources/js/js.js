@@ -53,7 +53,61 @@ $(document).ready(function(){
     $(this).parent().removeClass('active');
     $('body').removeClass('active-lightbox');
   })
+
+  if ($('.lista_mensagens').length){
+    function getChat() {
+      setInterval(function(){
+        $('.lista_mensagens .item.active').click();
+      }, 1000);
+    }
+
+    $('.lista_mensagens .item').on('click', function (){
+      $('.content.mensagens .conteudo.oculto').removeClass('oculto');
+
+      var ids = $(this).attr('id');
+      // console.log(ids);
+      // console.log(this);
+      $('.item.active').removeClass('active');
+      $(this).addClass('active')
+
+      $.ajax({
+        url: 'getMessages',
+        dataType: 'json',
+        method: 'POST',
+        data: {ids:ids},
+        success: function(response){
+          $('.conteudo_mensagem .topo a img').attr('src', response.user_avatar);
+          $('.conteudo_mensagem .topo a .nome').html(response.user_name);
+          $('.conteudo_mensagem .topo a').attr('href', response.profile_url);
+          $('.content.mensagens .conteudo .msgs .form_ajax .id_user_receive').val(response.id_otherUser);
+
+          var html = "";
+
+          $.each(response.messages, function(i, msg){
+            if(msg.id_sender == response.id_logedIn) {
+              html += '<div class="mine message">'
+            } else {
+              html += '<div class="his message">'
+            }
+            html += msg.message;
+            html += '</div>'
+          });
+
+          // console.log(html);
+          $('.conteudo_mensagem .lista_msg').html(html);
+          $('.conteudo_mensagem .lista_msg').click($('.conteudo_mensagem .lista_msg').animate({scrollTop: response.messages.length * 50}, '1000'));
+        }
+      });
+    });
+
+    if ($('.lateral_esquerda .lista_mensagens .item').length) {
+      $('.lateral_esquerda .lista_mensagens .item:eq(0)').click();
+      $('.lateral_esquerda .lista_mensagens .item:eq(0)').click($('.lateral_esquerda .lista_mensagens .item:eq(0)').animate({scrollTop: response.messages.length * 50}, '1000'));
+      getChat();
+    }
+  }
 });
+
 
 // Form ajax
 $(document).ready(function() {
@@ -71,6 +125,8 @@ $(document).ready(function() {
       form.ajaxSubmit({
         dataType:'json'
         ,success: function(res) {
+        console.log(res);
+
           if(res.msg) {
             alerta.html(res.msg);
           }
@@ -82,8 +138,15 @@ $(document).ready(function() {
           if(res.page_redirect) {
             window.location = res.page_redirect;
           }
-          if(res.form_reset) {
+          if(res.reset_form) {
             form[0].reset();
+          }
+          if(res.alert_hidden) {
+            setTimeout(() => { 
+              alerta.html("");
+              alerta.removeClass('success');
+              alerta.removeClass('error');
+            }, 1500);
           }
         }
       });

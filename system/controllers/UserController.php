@@ -185,5 +185,89 @@
                 return $response->withJson($response_return);
             }
         }
+
+        public function configuracao($request, $response, $args) {
+            $user['name'] = $request->getParsedBodyParam('name');
+            $user['lastName'] = $request->getParsedBodyParam('lastName');
+            $user['email'] = $request->getParsedBodyParam('email');
+            $user['phone'] = $request->getParsedBodyParam('phone');
+            $user['password'] = $request->getParsedBodyParam('password');
+            $user['checkPassword'] = $request->getParsedBodyParam('checkPassword');
+
+            // Requisição para atualização da imagem
+            if($request->getUploadedFiles()){
+                $image = $request->getUploadedFiles()['image'];
+            } else {
+                $image = false;
+            }
+
+            // Confirmação se senhas são iguais
+            if($user['password'] !== $user['checkPassword']) {
+                $response_return['status'] = 0;
+                $response_return['msg'] = 'Para alterar sua senha as senhas precisam coincidir';
+                return $response->withJson($response_return);
+            }
+
+            // Atualizar URL Usuário
+            $user['profile_url'] = $this->user->profileUrlGenerator($user['name'], $_SESSION['user_logedIn']['id']);
+
+            // Update
+            $values = array(
+                'user_name' => $user['name'],
+                'user_lastName' => $user['lastName'],
+                'user_email' => $user['email'],
+                'user_phone' => $user['phone'],
+                'profile_url' => $user['profile_url'],
+            );
+
+            
+
+            // Atualização senha
+            if($user['password'] != "") {
+                $values['password'] = password_hash($user['password'], PASSWORD_DEFAULT, ['cost'=>12]);
+                // $values['password'] = $user['password'];
+            }
+
+            
+
+
+            // Upload de imagem
+            if($image) {
+                if($image->getError() === UPLOAD_ERR_OK) {
+                    
+                    $extension = pathinfo($image->getClientFilename(), PATHINFO_EXTENSION);
+
+                    $name = md5(uniqid(rand(), true)).pathinfo($image->getClientFilename(), PATHINFO_FILENAME).".".$extension;
+                    $user['user_avatar'] = "uploads/".$name;
+                    $image->moveTo($user["user_avatar"]);
+                    $values["user_avatar"] = $user["user_avatar"];
+                }
+            }
+
+            $where = array(
+                'id' => (int)$_SESSION['user_logedIn']['id']    
+            );
+
+            echo "<pre>";
+            var_dump($values);
+
+            $this->user->updateUser($values, $where);
+            $user = $this->user->selectUser($values, $where);
+            
+            if($user['password'] !== "") {
+                // $this->login($user['email'], $user['password']);
+            } else {
+                $result = $this->user->selectUser($values, $where);
+                $this->user->setData($result);
+                // $_SESSION['user_logedIn'] = $this->user->getValues();
+            }
+
+            $response_return['status'] = 1;
+            // echo "<pre>";
+            // var_dump($this);
+            // $response_return['page_redirect'] = URL_BASE."configuracao"; 
+            return $response->withJson($response_return);
+        }
+        
     }
 ?>  

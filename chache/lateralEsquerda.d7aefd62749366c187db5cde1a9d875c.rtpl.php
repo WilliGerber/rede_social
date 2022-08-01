@@ -16,45 +16,31 @@
 
     <?php if( $page_mensagens == true ){ ?>
         <div class="lista_mensagens">
-            <class class="item">
-                <div class="foto">
-                    <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/person-512.webp" alt="">
-                </div>
-                <div class="info">
-                    <p class="nome">Fulano de Tal</p>
-                    <div class="ultima_mensagem">
-                        Lorem ipsum dolor sit amet consectetur...
-                    </div>
-                </div>
-            </class>
-            <class class="item">
-                <div class="foto">
-                    <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/person-512.webp" alt="">
-                </div>
-                <div class="info">
-                    <p class="nome">Fulano de Tal</p>
-                    <div class="ultima_mensagem">
-                        Lorem ipsum dolor sit amet consectetur...
-                    </div>
-                </div>
-            </class>
-            <class class="item">
-                <div class="foto">
-                    <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/person-512.webp" alt="">
-                </div>
-                <div class="info">
-                    <p class="nome">Fulano de Tal</p>
-                    <div class="ultima_mensagem">
-                        Lorem ipsum dolor sit amet consectetur...
-                    </div>
-                </div>
-            </class>
+            <?php if( $list_messages ){ ?>
+                <?php $counter1=-1;  if( isset($list_messages) && ( is_array($list_messages) || $list_messages instanceof Traversable ) && sizeof($list_messages) ) foreach( $list_messages as $key1 => $value1 ){ $counter1++; ?>
+                    <class class="item" id="<?php echo htmlspecialchars( $value1["id_receiver"], ENT_COMPAT, 'UTF-8', FALSE ); ?>:<?php echo htmlspecialchars( $value1["id_sender"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                        <div class="foto">
+                            <img src="<?php echo htmlspecialchars( $value1["user_avatar"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="">
+                        </div>
+                        <div class="info">
+                            <p class="nome"><?php echo htmlspecialchars( $value1["user_name"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+                            <div class="ultima_mensagem">
+                                <?php echo htmlspecialchars( $value1["message"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                            </div>
+                        </div>
+                    </class>
+                <?php } ?>
+            <?php }else{ ?>
+            <div class="sem_mensagem">
+                Você ainda não tem mensagens
+            </div>
+        <?php } ?>
         </div>
     <?php }else{ ?>
         <?php if( $links == true ){ ?>
             <div class="links">
                 <ul>
-                    <li><a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>mensagens">Mensagens<span>(2)</span></a></li>
+                    <li><a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>mensagens">Mensagens<span>(<?php echo htmlspecialchars( $countMessages, ENT_COMPAT, 'UTF-8', FALSE ); ?>)</span></a></li>
                 </ul>
                 <ul>
                     <li><a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>configuracao">Configurações</a></li>

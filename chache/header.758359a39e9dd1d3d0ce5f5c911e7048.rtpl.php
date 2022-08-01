@@ -47,7 +47,7 @@
                         </ul>
                     </div>
                     <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>feed/<?php echo htmlspecialchars( $user_logedIn['profile_url'], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-                        <img class="foto" src="<?php echo htmlspecialchars( $user_logedIn['user_avatar'], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="">
+                        <img class="foto" src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?><?php echo htmlspecialchars( $user_logedIn['user_avatar'], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="">
                     </a>
                 </div>
             </div>

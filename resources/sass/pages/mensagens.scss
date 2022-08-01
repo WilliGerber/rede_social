@@ -10,6 +10,9 @@
         @include desktop {
             width: 73.57%;
         }
+        &.oculto {
+            opacity: 0;
+        }
         .msgs {
             display: inline-flex;
             flex-wrap: wrap;
@@ -43,12 +46,12 @@
                     margin: 22px 0;
                     color: #dbdbdb;
                 }
-                .lista_mensagens {
+                .lista_msg {
                     width: 100%;
                     display: block;
                     height: 300px;
                     overflow-y: auto;
-                    .mensagem {
+                    .message {
                         background-color: #eaf0d1;
                         padding: 11px;
                         border-radius: 10px;
@@ -61,7 +64,7 @@
                         @include desktop {
                             width: 70%;
                         }
-                        &.eu {
+                        &.mine {
                             margin: 0 0 20px auto;
                             background-color: #85a2ff;
                         }

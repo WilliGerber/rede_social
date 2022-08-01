@@ -16,45 +16,31 @@
 
     {if="$page_mensagens == true"}
         <div class="lista_mensagens">
-            <class class="item">
-                <div class="foto">
-                    <img src="{$url_base}resources/images/person-512.webp" alt="">
-                </div>
-                <div class="info">
-                    <p class="nome">Fulano de Tal</p>
-                    <div class="ultima_mensagem">
-                        Lorem ipsum dolor sit amet consectetur...
-                    </div>
-                </div>
-            </class>
-            <class class="item">
-                <div class="foto">
-                    <img src="{$url_base}resources/images/person-512.webp" alt="">
-                </div>
-                <div class="info">
-                    <p class="nome">Fulano de Tal</p>
-                    <div class="ultima_mensagem">
-                        Lorem ipsum dolor sit amet consectetur...
-                    </div>
-                </div>
-            </class>
-            <class class="item">
-                <div class="foto">
-                    <img src="{$url_base}resources/images/person-512.webp" alt="">
-                </div>
-                <div class="info">
-                    <p class="nome">Fulano de Tal</p>
-                    <div class="ultima_mensagem">
-                        Lorem ipsum dolor sit amet consectetur...
-                    </div>
-                </div>
-            </class>
+            {if="$list_messages"}
+                {loop="$list_messages"}
+                    <class class="item" id="{$value.id_receiver}:{$value.id_sender}">
+                        <div class="foto">
+                            <img src="{$value.user_avatar}" alt="">
+                        </div>
+                        <div class="info">
+                            <p class="nome">{$value.user_name}</p>
+                            <div class="ultima_mensagem">
+                                {$value.message}
+                            </div>
+                        </div>
+                    </class>
+                {/loop}
+            {else}
+            <div class="sem_mensagem">
+                Você ainda não tem mensagens
+            </div>
+        {/if}
         </div>
     {else}
         {if="$links == true"}
             <div class="links">
                 <ul>
-                    <li><a href="{$url_base}mensagens">Mensagens<span>(2)</span></a></li>
+                    <li><a href="{$url_base}mensagens">Mensagens<span>({$countMessages})</span></a></li>
                 </ul>
                 <ul>
                     <li><a href="{$url_base}configuracao">Configurações</a></li>

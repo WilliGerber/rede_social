@@ -51,9 +51,17 @@ class Sql {
 
 	}
 
+	public function querySelect($rawQuery, $params = array())
+	{
+		$stmt = $this->conn->prepare($rawQuery);
+		$this->setParams($stmt, $params);
+		$stmt->execute();
+		return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+	}
+
 	public function select($table, $campos, $where):array
 	{	
-
+		
 		$sqlCampos = "";
 
 		$campos = !is_array($campos) ? [$campos] : $campos;
@@ -61,15 +69,17 @@ class Sql {
 		foreach ($campos as $key => $value) {
 			if (end($campos) == $value) {
 				$sqlCampos .= $value;
+				
 			}else{
 				$sqlCampos .= $value.", ";
+				
 			}
 		}
 
 		$sqlWhere = "";
 
 		$where = !is_array($where) ? [$where] : $where;
-
+		
 		foreach ($where as $key => $value) {
 			if (end($where) == $value) {
 				$sqlWhere .= $key." = :".$key;
@@ -82,11 +92,9 @@ class Sql {
 		$stmt = $this->conn->prepare("SELECT $sqlCampos FROM $table WHERE $sqlWhere");
 
 		$this->setParams($stmt, $parans);
-
+		
 		$stmt->execute();
-
 		return $stmt->fetchAll(\PDO::FETCH_ASSOC);
-
 	}
 
 	public function insert($table, $data)
@@ -161,7 +169,7 @@ class Sql {
 			}
 			$parans[':'.$key] = $value;
 		}
-
+		
 		$this->query("UPDATE $table SET $sqlValues WHERE $sqlWhere", $parans);
 	}
 }?>
