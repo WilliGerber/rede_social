@@ -1,0 +1,26 @@
+{loop="$publishes"}
+    <div class="item">
+        <div class="topo">
+            <a href="{$url_base}feed/willi">
+                <img src="{$value.user_avatar}" alt="Foto de {$value.user_name} {$value.user_lastName}">
+            </a>
+            <a href="{$url_base}feed/{$value.profile_url}">
+                <span>{$value.user_name} {$value.user_lastName}</span>
+            </a>
+        </div>
+        <div class="info">
+            {if="$value.text != ''"}
+                <div class="text">
+                    {$value.text}
+                </div>
+            {/if}
+            {if="$value.fotos"}
+                <div class="galeria">
+                    {loop="$value.fotos"}
+                        <img src="{$url_base}{$value.foto_path}" alt="">
+                    {/loop}
+                </div>
+            {/if}
+        </div>
+    </div>
+{/loop}

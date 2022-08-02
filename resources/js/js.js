@@ -55,9 +55,69 @@ $(document).ready(function(){
   })
 
   if($('.content.feed').length) {
-    var indice_page = $('#indice_page').val();
+    var page_index = $('#page_index').val();
     var user_id = $('#user_id').val();
-    alert(user_id);
+
+    function getPublishes(page_index, user_id, feed=true) {
+      $.ajax({
+        url: 'getPublishes',
+        dataType: 'json',
+        method: 'POST',
+        data: {page_index: page_index, user_id: user_id, feed: feed},
+        success: function(response){
+
+          var url_base = "http://localhost/rede_social/";
+          var html = "";
+          console.log(response)
+
+          $.each(response.publishes, function(i, pub){
+              html += '<div class="item" id="' + pub.id + '">'+
+
+                        '<div class="topo">'+
+                            '<a href="' + url_base + 'feed/'+pub.profile_url+'">'+
+                                '<img src="' + pub.user_avatar + '" alt="Foto de ' + pub.user_name + ' ' + pub.user_lastName + '">'+
+                            '</a>'+
+                            '<a href="' + url_base + 'feed/' + pub.profile_url + '">'+
+                                '<span>'+ pub.user_name +' '+ pub.user_lastName +'</span>'+
+                            '</a>'+
+                        '</div>'+
+
+                        '<div class="info">';
+                        if(pub.text != null){
+                          html += '<div class="text">'+
+                                    pub.text +
+                                  '</div>';
+                        }
+                        if(pub.fotos != false){
+                          html += '<div class="galeria">';
+                          $.each(pub.fotos, function(f, foto){
+                            html += '<img src="' + url_base + foto.foto_path + '" alt="">';
+                          });
+                          html += '</div>';
+                        }
+                          
+                  html += '</div>'+
+                        '</div>';
+          });
+
+          $('.publicacoes').append(html);
+          $('#page_index').val(response.next_page);
+        }
+      });
+    }
+    getPublishes(page_index, user_id);
+    // alert(user_id);
+
+    $(window).scroll(function(){
+      var position = $(window).scrollTop();
+      var bottom = $(document).height() - $(window).height();
+
+      if(position == bottom) {
+        var page_index = $('#page_index').val();
+        var user_id = $('#user_id').val();
+        getPublishes(page_index, user_id);
+      }
+    })
   }
 
   if ($('.lista_mensagens').length){

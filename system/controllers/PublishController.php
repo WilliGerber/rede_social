@@ -71,6 +71,24 @@
         
 
         }
+
+        public function getPublishes($request, $response, $args){
+            // Pegando infos da página feed
+            $page_index = $request->getParsedBodyParam('page_index');
+            $user_id = $request->getParsedBodyParam('user_id');
+            $feed = $request->getParsedBodyParam('feed');
+
+            // Pegando postagens com limite de $limit por página
+            $limit = 5;
+            $x = $limit * (int)$page_index;
+            $publishes = $this->publish->getFeedPublishes((int)$user_id, $limit, $x);
+
+            // Passando publicacoes para $.ajax
+            $response_return['status'] = 1;
+            $response_return['publishes'] = $publishes;
+            $response_return['next_page'] = (int)$page_index + 1;
+            return $response->withJson($response_return);
+        }
     }
 
 ?>

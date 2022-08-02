@@ -38,6 +38,7 @@
 
         function getFeedPublishes($id, $limit = 10, $offset = 0){
             
+            $offset = $offset - $limit;
             $sql = "SELECT p.*, u.user_name, u.user_lastName, u.user_avatar, u.profile_url FROM ".$this->table." p INNER JOIN users u ON p.id_user = u.id WHERE id_user = :id_user ORDER BY id DESC LIMIT ".$offset.", ".$limit;
             $params = array(':id_user' => $id);
             $publishes = $this->querySelect($sql, $params);

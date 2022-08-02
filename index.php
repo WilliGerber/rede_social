@@ -34,6 +34,8 @@ $app->post('/getMessages', '\DEV\Controllers\MessageController:getMessages');
 // ========== PublishController ==========
 // post
 $app->post('/publish', '\DEV\Controllers\PublishController:publish');
+$app->post('/getPublishes', '\DEV\Controllers\PublishController:getPublishes');
+
 
 
 $app->run();

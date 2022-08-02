@@ -10,6 +10,7 @@
     <script src="{$url_base}resources/js/jquery/jquery.min.js"></script>
     <script src="{$url_base}resources/js/jquery.mask/jquery.mask.min.js"></script>
     <script src="{$url_base}resources/js/jquery.form/jquery.form.min.js"></script>
+    <script src="{$url_base}resources/js/slick/slick.min.js"></script>
     <script src="{$url_base}resources/js/js.min.js"></script>
 </head>
 <body>

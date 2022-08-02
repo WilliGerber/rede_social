@@ -108,9 +108,6 @@ class HomeController
     public function feed() {
         UserController::verifyLogin();
 
-        // $publishes = new Publish;
-        // $result = $publishes->getFeedPublishes((int)$_SESSION['user_logedIn']['id']);
-
         // echo "<pre>";
         // var_dump($result);
         // exit();
@@ -125,7 +122,6 @@ class HomeController
             'user' => $this->user_logedIn,
             'user_logedIn' => $this->user_logedIn,
             'countMessages' => count($this->default['listMessage']),
-            // 'publishes' => $result
         );
 
         $this->setTpl('header', $info);
