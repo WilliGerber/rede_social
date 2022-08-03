@@ -58,15 +58,31 @@ $(document).ready(function(){
     var page_index = $('#page_index').val();
     var user_id = $('#user_id').val();
 
+    function setSliderGallery(){
+      // countGalleries setado antes da função scroll para evitar que o slider fosse chamado no mesmo id mais de uma vez.
+      if($('.gallery.slider').length){
+        var galleries = $('.gallery.slider');
+        
+        for(countGalleries; countGalleries < galleries.length; countGalleries++){
+            var id_gallery = $('.gallery.slider')[countGalleries].id;
+            $("#"+id_gallery).slick({
+              infinite: false
+            });  
+        } 
+      }
+    }
+  
+
     function getPublishes(page_index, user_id, feed=true) {
+      var url_base = "http://localhost/rede_social/";
+
       $.ajax({
-        url: 'getPublishes',
+        url: `${url_base}getPublishes`,
         dataType: 'json',
         method: 'POST',
         data: {page_index: page_index, user_id: user_id, feed: feed},
         success: function(response){
 
-          var url_base = "http://localhost/rede_social/";
           var html = "";
           console.log(response)
 
@@ -75,7 +91,7 @@ $(document).ready(function(){
 
                         '<div class="topo">'+
                             '<a href="' + url_base + 'feed/'+pub.profile_url+'">'+
-                                '<img src="' + pub.user_avatar + '" alt="Foto de ' + pub.user_name + ' ' + pub.user_lastName + '">'+
+                                '<img src="' + url_base + pub.user_avatar + '" alt="Foto de ' + pub.user_name + ' ' + pub.user_lastName + '">'+
                             '</a>'+
                             '<a href="' + url_base + 'feed/' + pub.profile_url + '">'+
                                 '<span>'+ pub.user_name +' '+ pub.user_lastName +'</span>'+
@@ -89,7 +105,11 @@ $(document).ready(function(){
                                   '</div>';
                         }
                         if(pub.fotos != false){
-                          html += '<div class="galeria">';
+                          if(pub.fotos.length > 1) {
+                            html += '<div class="gallery slider" id="gallery_'+pub.id+'">';
+                          } else {
+                            html += '<div class="gallery">';
+                          }
                           $.each(pub.fotos, function(f, foto){
                             html += '<img src="' + url_base + foto.foto_path + '" alt="">';
                           });
@@ -101,13 +121,20 @@ $(document).ready(function(){
           });
 
           $('.publicacoes').append(html);
-          $('#page_index').val(response.next_page);
+          if (response.next_page != null) {
+            $('#page_index').val(response.next_page);
+          } else {
+            $('#page_index').remove();
+          }
+          setSliderGallery();
+
         }
       });
     }
     getPublishes(page_index, user_id);
     // alert(user_id);
 
+    var countGalleries = 0
     $(window).scroll(function(){
       var position = $(window).scrollTop();
       var bottom = $(document).height() - $(window).height();

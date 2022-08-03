@@ -40,7 +40,7 @@
         <?php if( $links == true ){ ?>
             <div class="links">
                 <ul>
-                    <li><a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>mensagens">Mensagens<span>(<?php echo htmlspecialchars( $countMessages, ENT_COMPAT, 'UTF-8', FALSE ); ?>)</span></a></li>
+                    <li><a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>mensagens">Mensagens<span>(<?php if( $countMessages != null ){ ?><?php echo htmlspecialchars( $countMessages, ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>0<?php } ?>)</span></a></li>
                 </ul>
                 <ul>
                     <li><a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>configuracao">Configurações</a></li>

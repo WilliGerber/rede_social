@@ -6,6 +6,7 @@ use DEV\Controllers\UserController;
 use DEV\User;
 use DEV\Message;
 use DEV\Publish;
+use DEV\Fotos;
 
 if(!isset($_SESSION)) {
     session_start();
@@ -21,6 +22,7 @@ class HomeController
         'links' => true,
         'page_mensagens' => false,
         'listMessage' => array(),
+        'modelFotos' => array(),
     );
 
     private $user_logedIn = array();
@@ -69,6 +71,7 @@ class HomeController
             $this->default['listMessage'] = $listMessage->getUsersMessages((int)$_SESSION['user_logedIn']['id']);
         }
 
+        $this->default['modelFotos'] = new Fotos;
         
     }
 
@@ -107,10 +110,7 @@ class HomeController
 
     public function feed() {
         UserController::verifyLogin();
-
-        // echo "<pre>";
-        // var_dump($result);
-        // exit();
+        $list_fotos = $this->default['modelFotos']->selectFotosRand((int)$_SESSION['user_logedIn']['id']);
 
         $this->default['footer'] = false;
         $info = array(
@@ -121,7 +121,8 @@ class HomeController
             'page_mensagens' => $this->default['page_mensagens'],
             'user' => $this->user_logedIn,
             'user_logedIn' => $this->user_logedIn,
-            'countMessages' => count($this->default['listMessage']),
+            'countMessages' => $this->default['listMessage']? count($this->default['listMessage']): $this->default['listMessage'] = null,
+            'list_fotos' => $list_fotos,
         );
 
         $this->setTpl('header', $info);
@@ -145,6 +146,9 @@ class HomeController
         } else {
             $user = new User;
 
+            // echo "<pre>";
+            // var_dump($profile_url);
+            // exit();
             $campos = array(
                 "id",
                 "profile_url",
@@ -162,7 +166,10 @@ class HomeController
                 'profile_url' => $profile_url
             );
 
+            
             $profileOwner = $user->selectUser($campos, $where)[0];
+
+            
 
             if ($profileOwner['user_avatar'] == '' || !is_file($profileOwner['user_avatar'])) {
                 $profileOwner['user_avatar'] = /*URL_BASE.*/"resources/images/person-512.webp";
@@ -181,7 +188,7 @@ class HomeController
             'page_mensagens' => $this->default['page_mensagens'],
             'user' => $profileOwner,
             'user_logedIn' => $this->user_logedIn,
-
+            'countMessages' => $this->default['listMessage']? count($this->default['listMessage']): $this->default['listMessage'] = null,
         );
         $this->setTpl('header', $info);
         $this->setTpl('feed/inicioCentral', array('classPrincipal' => 'feed'));
@@ -202,7 +209,7 @@ class HomeController
             'page_mensagens' => $this->default['page_mensagens'],
             'user' => $this->user_logedIn,
             'user_logedIn' => $this->user_logedIn,
-            'countMessages' => count($this->default['listMessage']),
+            'countMessages' => $this->default['listMessage']? count($this->default['listMessage']): $this->default['listMessage'] = null,
         );
 
         $this->setTpl('header', $info);
@@ -224,7 +231,7 @@ class HomeController
             'page_mensagens' => $this->default['page_mensagens'],
             'user' => $this->user_logedIn,
             'user_logedIn' => $this->user_logedIn,
-            'countMessages' => count($this->default['listMessage']),
+            'countMessages' => $this->default['listMessage']? count($this->default['listMessage']): $this->default['listMessage'] = null,
         );
         $this->setTpl('header', $info);
         $this->setTpl('feed/inicioCentral', array('classPrincipal' => 'search'));
@@ -246,7 +253,11 @@ class HomeController
             'user' => $this->user_logedIn,
             'user_logedIn' => $this->user_logedIn,
             'list_messages' => $this->default['listMessage'],
+            'countMessages' => $this->default['listMessage']? count($this->default['listMessage']): $this->default['listMessage'] = null,
         );
+        // echo "<pre>";
+        // var_dump($info);
+        // exit();
         $this->setTpl('header', $info);
         $this->setTpl('feed/inicioCentral', array('classPrincipal' => 'mensagens'));
         $this->setTpl('feed/lateralEsquerda');
@@ -257,6 +268,18 @@ class HomeController
     public function fotos(){
         UserController::verifyLogin();
 
+
+        $fields = array (
+            "id",
+            "foto_path"
+        );
+
+        $where = array (
+            "id_user" => (int)$_SESSION['user_logedIn']['id']
+        );
+
+        $result_fotos = $this->default['modelFotos']->selectFotos($fields, $where);
+
         $info = array(
             'title_pagina' => 'Minhas Fotos',
             'header_login' => $this->default['header_login'],
@@ -265,8 +288,10 @@ class HomeController
             'page_mensagens' => $this->default['page_mensagens'],
             'user' => $this->user_logedIn,
             'user_logedIn' => $this->user_logedIn,
-            'countMessages' => count($this->default['listMessage']),
+            'countMessages' => $this->default['listMessage']? count($this->default['listMessage']): $this->default['listMessage'] = null,
+            'fotos' => $result_fotos
         );
+
         $this->setTpl('header', $info);
         $this->setTpl('feed/inicioCentral', array('classPrincipal' => 'minhas_fotos'));
         $this->setTpl('feed/lateralEsquerda');

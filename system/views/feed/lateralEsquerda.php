@@ -40,7 +40,7 @@
         {if="$links == true"}
             <div class="links">
                 <ul>
-                    <li><a href="{$url_base}mensagens">Mensagens<span>({$countMessages})</span></a></li>
+                    <li><a href="{$url_base}mensagens">Mensagens<span>({if="$countMessages != null"}{$countMessages}{else}0{/if})</span></a></li>
                 </ul>
                 <ul>
                     <li><a href="{$url_base}configuracao">Configurações</a></li>

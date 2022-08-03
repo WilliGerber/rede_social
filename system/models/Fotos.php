@@ -29,5 +29,13 @@
             $fotosSelection = $this->select($this->table, $fields, $where);
             return $fotosSelection;
         }
+
+        function selectFotosRand($limit=6){
+            $sql = "";
+            
+            $params = array(':id_sender' => $id);
+            $result = $this->querySelect($sql, $params);
+
+        }
     }
 ?>

@@ -1,40 +1,8 @@
 <div class="conteudo">
-<section class="publicacoes">
-    <div class="item">
-            <div class="topo">
-                <img src="{$url_base}resources/images/person-512.webp" alt="Foto de Fulano de Tal">
-                <span>Fulano de Tal</span>
-            </div>
-            <div class="info">
-                <div class="texto">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore animi in, nemo quidem fugiat asperiores, soluta blanditiis minima nesciunt maiores necessitatibus iste deleniti non quae laborum eum alias iure itaque.
-                </div>
-                <div class="galeria">
-                    <img src="{$url_base}resources/images/placeholder.png" alt="">
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <div class="topo">
-                <img src="{$url_base}resources/images/person-512.webp" alt="Foto de Fulano de Tal">
-                <span>Fulano de Tal</span>
-            </div>
-            <div class="info">
-                <div class="texto">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore animi in, nemo quidem fugiat asperiores, soluta blanditiis minima nesciunt maiores necessitatibus iste deleniti non quae laborum eum alias iure itaque.
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <div class="topo">
-                <img src="{$url_base}resources/images/person-512.webp" alt="Foto de Fulano de Tal">
-                <span>Fulano de Tal</span>
-            </div>
-            <div class="info">
-                <div class="galeria">
-                    <img src="{$url_base}resources/images/placeholder.png" alt="">
-                </div>
-            </div>
-        </div>
+    <section class="publicacoes">
+
     </section>
+
+    <input type="hidden" name="" id="page_index" value="1">
+    <input type="hidden" id="user_id" value="{$user['id']}">
 </div>
