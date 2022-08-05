@@ -30,12 +30,13 @@
             return $fotosSelection;
         }
 
-        function selectFotosRand($limit=6){
-            $sql = "";
+        function selectFotosRand($id_user, $limit=6){
+            $sql = "SELECT * FROM ".$this->table." WHERE id_user = :id_user ORDER BY RAND() LIMIT " .$limit;
             
-            $params = array(':id_sender' => $id);
+            $params = array(':id_user' => $id_user);
             $result = $this->querySelect($sql, $params);
-
+            
+            return $result;
         }
     }
 ?>

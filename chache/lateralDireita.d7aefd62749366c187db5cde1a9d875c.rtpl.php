@@ -9,42 +9,23 @@
             </form>
         </div>
     <?php } ?>
+
+    <?php if( $list_fotos ){ ?>
     <div class="fotos">
         <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>fotos">
             <p>Fotos</p>
         </a>
         <ul>
+            <?php $counter1=-1;  if( isset($list_fotos) && ( is_array($list_fotos) || $list_fotos instanceof Traversable ) && sizeof($list_fotos) ) foreach( $list_fotos as $key1 => $value1 ){ $counter1++; ?>
             <li>
                 <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>fotos">
-                    <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/placeholder.png" alt="">
+                    <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?><?php echo htmlspecialchars( $value1["foto_path"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="">
                 </a>
             </li>
-            <li>
-                <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>fotos">
-                    <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/placeholder.png" alt="">
-                </a>
-            </li>
-            <li>
-                <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>fotos">
-                    <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/placeholder.png" alt="">
-                </a>
-            </li>
-            <li>
-                <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>fotos">
-                    <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/placeholder.png" alt="">
-                </a>
-            </li>
-            <li>
-                <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>fotos">
-                    <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/placeholder.png" alt="">
-                </a>
-            </li>
-            <li>
-                <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>fotos">
-                    <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/placeholder.png" alt="">
-                </a>
+            <?php } ?>
         </ul>
     </div>
+    <?php } ?>
     <div class="fotos follows">
     <p>Seguindo</p>
         <ul>

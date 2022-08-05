@@ -9,12 +9,13 @@
         @include desktop{
             width: 47.14%;
         }
-        .search {
+        .searches {
             .item {
                 border: 1px solid #dbdbdb;
                 padding: 20px 30px;
                 margin-bottom: 35px;
                 display: inline-flex;
+                width: 100%;
                 flex-wrap: wrap;
                 align-items: flex-start;
                 .foto {

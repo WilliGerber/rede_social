@@ -35,7 +35,7 @@
             <div class="left">
                 <div class="pesquisa">
                     <form action="search" method="get">
-                        <input type="text" name="q" placeholder="pesquisar">
+                        <input type="text" name="q" placeholder="pesquisar" value="{$search}">
                         <input type="submit" value="?">
                     </form>
                 </div>

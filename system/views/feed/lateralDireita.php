@@ -9,42 +9,23 @@
             </form>
         </div>
     {/if}
+
+    {if="$list_fotos"}
     <div class="fotos">
         <a href="{$url_base}fotos">
             <p>Fotos</p>
         </a>
         <ul>
+            {loop="$list_fotos"}
             <li>
                 <a href="{$url_base}fotos">
-                    <img src="{$url_base}resources/images/placeholder.png" alt="">
+                    <img src="{$url_base}{$value.foto_path}" alt="">
                 </a>
             </li>
-            <li>
-                <a href="{$url_base}fotos">
-                    <img src="{$url_base}resources/images/placeholder.png" alt="">
-                </a>
-            </li>
-            <li>
-                <a href="{$url_base}fotos">
-                    <img src="{$url_base}resources/images/placeholder.png" alt="">
-                </a>
-            </li>
-            <li>
-                <a href="{$url_base}fotos">
-                    <img src="{$url_base}resources/images/placeholder.png" alt="">
-                </a>
-            </li>
-            <li>
-                <a href="{$url_base}fotos">
-                    <img src="{$url_base}resources/images/placeholder.png" alt="">
-                </a>
-            </li>
-            <li>
-                <a href="{$url_base}fotos">
-                    <img src="{$url_base}resources/images/placeholder.png" alt="">
-                </a>
+            {/loop}
         </ul>
     </div>
+    {/if}
     <div class="fotos follows">
     <p>Seguindo</p>
         <ul>

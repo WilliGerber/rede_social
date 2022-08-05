@@ -23,6 +23,8 @@ $app->post('/about_me', '\DEV\Controllers\UserController:about_me');
 $app->post('/configuracao', '\DEV\Controllers\UserController:configuracao');
 // get
 $app->get('/logout', '\DEV\Controllers\UserController:logout');
+$app->get('/setFriendship', '\DEV\Controllers\UserController:setFriendship');
+
 
 
 // ========== MessageController ==========
@@ -35,8 +37,6 @@ $app->post('/getMessages', '\DEV\Controllers\MessageController:getMessages');
 // post
 $app->post('/publish', '\DEV\Controllers\PublishController:publish');
 $app->post('/getPublishes', '\DEV\Controllers\PublishController:getPublishes');
-
-
 
 $app->run();
 

@@ -1,55 +1,26 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?><div class="conteudo">
-    <section class="search">
-        <div class="item">
-            <div class="foto">
-                <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>feed/willi">
-                    <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/person-512.webp" alt="Foto de Perfil">
-                </a>
-            </div>
-            <div class="info">
-                <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>feed/willi">
-                    <p class="nome">Fulano de tal</p>
-                </a>
-                <div class="bio">
-                    <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>feed/willi">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem incidunt quidem qui vel dolor fugit soluta, aperiam magnam, quod quam, ipsam inventore amet molestias nihil nemo eos accusantium unde obcaecati.
+    <section class="searches">
+
+        <?php $counter1=-1;  if( isset($result_search) && ( is_array($result_search) || $result_search instanceof Traversable ) && sizeof($result_search) ) foreach( $result_search as $key1 => $value1 ){ $counter1++; ?>
+            <div class="item">
+                <div class="foto">
+                    <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?><?php echo htmlspecialchars( $value1["profile_url"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                        <img src="<?php echo htmlspecialchars( $value1["user_avatar"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="Foto de <?php echo htmlspecialchars( $value1["user_name"], ENT_COMPAT, 'UTF-8', FALSE ); ?> <?php echo htmlspecialchars( $value1["user_lastName"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                     </a>
                 </div>
-            </div>
-        </div>
-        <div class="item">
-            <div class="foto">
-                <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>feed/willi">
-                    <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/person-512.webp" alt="Foto de Perfil">
-                </a>
-            </div>
-            <div class="info">
-                <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>feed/willi">
-                    <p class="nome">Fulano de tal</p>
-                </a>
-                <div class="bio">
-                    <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>feed/willi">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem incidunt quidem qui vel dolor fugit soluta, aperiam magnam, quod quam, ipsam inventore amet molestias nihil nemo eos accusantium unde obcaecati.
+                <div class="info">
+                    <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?><?php echo htmlspecialchars( $value1["profile_url"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                        <p class="nome"><?php echo htmlspecialchars( $value1["user_name"], ENT_COMPAT, 'UTF-8', FALSE ); ?> <?php echo htmlspecialchars( $value1["user_lastName"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
                     </a>
+                    <div class="bio">
+                        <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?><?php echo htmlspecialchars( $value1["profile_url"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                            <?php echo htmlspecialchars( $value1["user_description"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="item">
-            <div class="foto">
-                <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>feed/willi">
-                    <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/person-512.webp" alt="Foto de Perfil">
-                </a>
-            </div>
-            <div class="info">
-                <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>feed/willi">
-                    <p class="nome">Fulano de tal</p>
-                </a>
-                <div class="bio">
-                    <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>feed/willi">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem incidunt quidem qui vel dolor fugit soluta, aperiam magnam, quod quam, ipsam inventore amet molestias nihil nemo eos accusantium unde obcaecati.
-                    </a>
-                </div>
-            </div>
-        </div>
+            
+        <?php } ?>
+
     </section>
 </div>

@@ -199,6 +199,25 @@ $(document).ready(function(){
       getChat();
     }
   }
+
+  $(".btn-seguir").on('click', function(){
+
+    var id_user = $(this).next().val();
+    var id_user_logedIn = $(this).next().next().val();
+
+    $.ajax({
+      url: 'setFriendship',
+      dataType: 'json',
+      method: 'GET',
+      data: {id_user: id_user, id_user_logedIn: id_user_logedIn},
+      success: function(response){
+          if (response.status =='1') {
+            $(this).html(response.text_html);
+          }
+        }
+    });
+
+  });
 });
 
 

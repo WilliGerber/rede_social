@@ -1,7 +1,7 @@
 <section class="lateral_esquerda">
     <div class="topo">
         <a href="{$url_base}feed/{$user['profile_url']}">
-            <img src="{$url_base}{$user['user_avatar']}" alt="Foto de Fulano de Tal">
+            <img src="{$url_base}{$user['user_avatar']}" alt="Foto de {$user['user_name']} {$user['user_lastName']}">
         </a>
         <div class="info">
             <a href="{$url_base}feed/{$user['profile_url']}">
@@ -10,6 +10,8 @@
 
             {if="$user_logedIn['id'] != $user['id']"}
                 <button class="btn-seguir">Seguir</button>
+                <input type="hidden" value="{$user['id']}">
+                <input type="hidden" value="{$user_logedIn['id']}">
             {/if}
         </div>
     </div>

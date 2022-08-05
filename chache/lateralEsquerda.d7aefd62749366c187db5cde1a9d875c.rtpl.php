@@ -1,7 +1,7 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?><section class="lateral_esquerda">
     <div class="topo">
         <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>feed/<?php echo htmlspecialchars( $user['profile_url'], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-            <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?><?php echo htmlspecialchars( $user['user_avatar'], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="Foto de Fulano de Tal">
+            <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?><?php echo htmlspecialchars( $user['user_avatar'], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="Foto de <?php echo htmlspecialchars( $user['user_name'], ENT_COMPAT, 'UTF-8', FALSE ); ?> <?php echo htmlspecialchars( $user['user_lastName'], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
         </a>
         <div class="info">
             <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>feed/<?php echo htmlspecialchars( $user['profile_url'], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
@@ -10,6 +10,8 @@
 
             <?php if( $user_logedIn['id'] != $user['id'] ){ ?>
                 <button class="btn-seguir">Seguir</button>
+                <input type="hidden" value="<?php echo htmlspecialchars( $user['id'], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                <input type="hidden" value="<?php echo htmlspecialchars( $user_logedIn['id'], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
             <?php } ?>
         </div>
     </div>

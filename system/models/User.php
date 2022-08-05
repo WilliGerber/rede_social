@@ -65,6 +65,28 @@
             $string = str_replace(" ", "_", $string);
             return $string.$id;
         }
+
+        function getSearch($search){
+            $sql = "SELECT * FROM ".$this->table." WHERE user_name LIKE '%".$search."%' OR user_lastName LIKE '%".$search."%' ORDER BY user_name ASC";
+            
+            $params = array(':search' => $search);
+            $result = $this->querySelect($sql);
+
+            $users = array();
+            foreach ($result as $user){
+                
+                if ($user['user_avatar'] == '' || !is_file($user['user_avatar'])) {
+                    $user['user_avatar'] = URL_BASE."resources/images/person-512.webp";
+                    
+                } else {
+                    $user['user_avatar'] = URL_BASE.$user['user_avatar'];
+                } 
+                
+                $users[] = $user;
+            }
+
+            return $users;
+        }
     }
 
     
