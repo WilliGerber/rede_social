@@ -30,7 +30,7 @@ header {
         }
         .login{
             form{
-                max-width: 530px;
+                max-width: 550px;
                 @include desktop {
                     display: inline-flex;
                     flex-wrap: wrap;
@@ -40,7 +40,7 @@ header {
                     margin: 0 0 15px 0;
 
                     @include desktop {
-                        max-width: 205px;
+                        max-width: 200px;
                         margin-bottom: 0;
                         margin-right: 15px;
                     }

@@ -54,57 +54,64 @@
             $phone = $request->getParsedBodyParam('phone');
             $password = $request->getParsedBodyParam('password');
 
-            $campos = array(
-                'id',
-                'user_email',
-            );
-
-            $where = array(
-                'user_email' => $email,
-            );
-
-            $resultado = $this->user->selectUser($campos, $where);
-
-            if($resultado) {
+            if($name == '' || $email == '' || $phone == '' || $password == ''){
                 $response_return['status'] = '0';
-                $response_return['msg'] = 'Já existe uma conta cadastrada com esse e-mail, por favor, utilizar outro e-mail';
+                $response_return['msg'] = 'Preencha todos os campos';
                 return $response->withJson($response_return);
-                
             } else {
-                
+
                 $campos = array(
-                'user_name' => $name,
-                'user_email' => $email,
-                'user_phone' => $phone,
-                'user_password' => password_hash($password, PASSWORD_DEFAULT, ['cost'=>12])
+                    'id',
+                    'user_email',
                 );
 
-                $this->user->insertUser($campos);
-
-                $return = $this->login($email, $password);
-
-                // gerar url do perfil
-                $profileUrl = $this->user->profileUrlGenerator($name, $_SESSION['user_logedIn']['id']);
-
-                // Update database profileUrl
-                $values = array(
-                    'profile_url' => $profileUrl
-                );
                 $where = array(
-                    'id' => (int)$_SESSION['user_logedIn']['id']    
+                    'user_email' => $email,
                 );
 
-                $this->user->updateUser($values, $where);
+                $resultado = $this->user->selectUser($campos, $where);
 
-                if($return) {
-                    $response_return['status'] = '1';
-                    $response_return['page_redirect'] = URL_BASE.'feed';
-                    return $response->withJson($response_return);
-                } else {
+                if($resultado) {
                     $response_return['status'] = '0';
-                    $response_return['msg'] = 'Erro ao fazer login após o seu cadastro na rede social';
-                    $response_return['form_reset'] = true;
+                    $response_return['msg'] = 'Já existe uma conta cadastrada com esse e-mail, por favor, utilizar outro e-mail';
                     return $response->withJson($response_return);
+                    
+                } else {
+                    
+                    $campos = array(
+                    'user_name' => $name,
+                    'user_email' => $email,
+                    'user_phone' => $phone,
+                    'user_password' => password_hash($password, PASSWORD_DEFAULT, ['cost'=>12])
+                    );
+
+                    $this->user->insertUser($campos);
+
+                    $return = $this->login($email, $password);
+
+                    // gerar url do perfil
+                    $profileUrl = $this->user->profileUrlGenerator($name, $_SESSION['user_logedIn']['id']);
+
+                    // Update database profileUrl
+                    $values = array(
+                        'profile_url' => $profileUrl
+                    );
+                    $where = array(
+                        'id' => (int)$_SESSION['user_logedIn']['id']    
+                    );
+
+                    $this->user->updateUser($values, $where);
+
+                    if($return) {
+                        $response_return['status'] = '1';
+                        $response_return['page_redirect'] = URL_BASE.'feed';
+                        return $response->withJson($response_return);
+                    } else {
+                        $response_return['status'] = '0';
+                        $response_return['msg'] = 'Erro ao fazer login após o seu cadastro na rede social';
+                        $response_return['form_reset'] = true;
+                        return $response->withJson($response_return);
+                    }
                 }
             }
         }
