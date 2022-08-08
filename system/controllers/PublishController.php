@@ -81,7 +81,8 @@
             // Pegando postagens com limite de $limit por página
             $limit = 5;
             $x = $limit * (int)$page_index;
-            $publishes = $this->publish->getFeedPublishes((int)$user_id, $limit, $x);
+
+            $publishes = $this->publish->getFeedPublishes((int)$user_id, $limit, $x, $feed);
 
             // Passando publicacoes para $.ajax
             $response_return['status'] = 1;

@@ -36,12 +36,30 @@
             return $this->querySelect($sql, $params);
         }
 
-        function getFeedPublishes($id, $limit = 10, $offset = 0){
+        function getFeedPublishes($id, $limit = 10, $offset = 0, $feed=true){
             
+            if($feed == 'true'){
+                // retornar ids dos amigos  
+                $fields = array('id_following');
+                $where = array(
+                    'id_follower' => $id,
+                );
+
+                $response = $this->select('friends', $fields, $where);
+                
+                $ids[] = $id;
+                foreach($response as $following){
+                    $ids[] = (int)$following['id_following'];
+                }
+            } else {
+                //retornar id do usuario
+                $ids = [$id];
+            }
+
             $offset = $offset - $limit;
-            $sql = "SELECT p.*, u.user_name, u.user_lastName, u.user_avatar, u.profile_url FROM ".$this->table." p INNER JOIN users u ON p.id_user = u.id WHERE id_user = :id_user ORDER BY id DESC LIMIT ".$offset.", ".$limit;
-            $params = array(':id_user' => $id);
-            $publishes = $this->querySelect($sql, $params);
+            $sql = "SELECT p.*, u.user_name, u.user_lastName, u.user_avatar, u.profile_url FROM ".$this->table." p INNER JOIN users u ON p.id_user = u.id WHERE id_user IN (".implode(",", $ids).") ORDER BY date_cadastro DESC LIMIT ".$offset.", ".$limit;
+            $publishes = $this->querySelect($sql);
+
 
             for($i=0; $i < count($publishes); $i++) {
                 if ($publishes[$i]['user_avatar'] == '' || !is_file($publishes[$i]['user_avatar'])) {

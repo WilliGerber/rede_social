@@ -26,41 +26,21 @@
         </ul>
     </div>
     <?php } ?>
-    <div class="fotos follows">
-    <p>Seguindo</p>
-        <ul>
-            <li>
-                <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>feed/willi">
-                    <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/placeholder.png" alt="">
-                </a>
-            </li>
-            <li>
-                <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>feed/willi">
-                    <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/placeholder.png" alt="">
-                </a>
-            </li>
-            <li>
-                <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>feed/willi">
-                    <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/placeholder.png" alt="">
-                </a>
-            </li>
-            <li>
-                <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>feed/willi">
-                    <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/placeholder.png" alt="">
-                </a>
-            </li>
-            <li>
-                <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>feed/willi">
-                    <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/placeholder.png" alt="">
-                </a>
-            </li>
-            <li>
-                <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>feed/willi">
-                    <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>resources/images/placeholder.png" alt="">
-                </a>
-            </li>
-        </ul>
-    </div>
+
+    <?php if( $list_following ){ ?>
+        <div class="fotos follows">
+        <p>Seguindo</p>
+            <ul>
+                <?php $counter1=-1;  if( isset($list_following) && ( is_array($list_following) || $list_following instanceof Traversable ) && sizeof($list_following) ) foreach( $list_following as $key1 => $value1 ){ $counter1++; ?>
+                <li>
+                    <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>feed/<?php echo htmlspecialchars( $value1["profile_url"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                        <img src="<?php echo htmlspecialchars( $value1["user_avatar"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="">
+                    </a>
+                </li>
+                <?php } ?>
+            </ul>
+        </div>
+    <?php } ?>
     <div class="footer">
         <div class="content">
             <p>Todos os Direitos Reservados <?php echo date('Y'); ?></p>

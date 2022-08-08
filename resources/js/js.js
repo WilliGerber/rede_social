@@ -57,6 +57,7 @@ $(document).ready(function(){
   if($('.content.feed').length) {
     var page_index = $('#page_index').val();
     var user_id = $('#user_id').val();
+    var feed = $('#feed').val();
 
     function setSliderGallery(){
       // countGalleries setado antes da função scroll para evitar que o slider fosse chamado no mesmo id mais de uma vez.
@@ -84,7 +85,6 @@ $(document).ready(function(){
         success: function(response){
 
           var html = "";
-          console.log(response)
 
           $.each(response.publishes, function(i, pub){
               html += '<div class="item" id="' + pub.id + '">'+
@@ -131,7 +131,7 @@ $(document).ready(function(){
         }
       });
     }
-    getPublishes(page_index, user_id);
+    getPublishes(page_index, user_id, feed);
     // alert(user_id);
 
     var countGalleries = 0
@@ -142,7 +142,8 @@ $(document).ready(function(){
       if(position == bottom) {
         var page_index = $('#page_index').val();
         var user_id = $('#user_id').val();
-        getPublishes(page_index, user_id);
+        var feed = $('#feed').val();
+        getPublishes(page_index, user_id, feed);
       }
     })
   }
@@ -158,8 +159,6 @@ $(document).ready(function(){
       $('.content.mensagens .conteudo.oculto').removeClass('oculto');
 
       var ids = $(this).attr('id');
-      // console.log(ids);
-      // console.log(this);
       $('.item.active').removeClass('active');
       $(this).addClass('active')
 
@@ -186,7 +185,6 @@ $(document).ready(function(){
             html += '</div>'
           });
 
-          // console.log(html);
           $('.conteudo_mensagem .lista_msg').html(html);
           $('.conteudo_mensagem .lista_msg').click($('.conteudo_mensagem .lista_msg').animate({scrollTop: response.messages.length * 50}, '1000'));
         }
@@ -200,23 +198,23 @@ $(document).ready(function(){
     }
   }
 
+  // Setar botao seguir
   $(".btn-seguir").on('click', function(){
 
     var id_user = $(this).next().val();
     var id_user_logedIn = $(this).next().next().val();
 
     $.ajax({
-      url: 'setFriendship',
+      url: '../setFriendship',
       dataType: 'json',
-      method: 'GET',
+      method: 'POST',
       data: {id_user: id_user, id_user_logedIn: id_user_logedIn},
       success: function(response){
-          if (response.status =='1') {
-            $(this).html(response.text_html);
+          if (response.status == '1') {
+            $(".btn-seguir").html(response.text_html);
           }
         }
     });
-
   });
 });
 
@@ -237,7 +235,6 @@ $(document).ready(function() {
       form.ajaxSubmit({
         dataType:'json'
         ,success: function(res) {
-        console.log(res);
 
           if(res.msg) {
             alerta.html(res.msg);

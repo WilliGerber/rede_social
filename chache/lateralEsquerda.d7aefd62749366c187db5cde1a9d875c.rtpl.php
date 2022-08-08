@@ -9,7 +9,7 @@
             </a>
 
             <?php if( $user_logedIn['id'] != $user['id'] ){ ?>
-                <button class="btn-seguir">Seguir</button>
+                <button class="btn-seguir"><?php echo htmlspecialchars( $user['friendship'], ENT_COMPAT, 'UTF-8', FALSE ); ?></button>
                 <input type="hidden" value="<?php echo htmlspecialchars( $user['id'], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                 <input type="hidden" value="<?php echo htmlspecialchars( $user_logedIn['id'], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
             <?php } ?>

@@ -22,4 +22,5 @@
 
     <input type="hidden" name="" id="page_index" value="1">
     <input type="hidden" id="user_id" value="<?php echo htmlspecialchars( $user_logedIn['id'], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+    <input type="hidden" id="feed" value="true">
 </div>

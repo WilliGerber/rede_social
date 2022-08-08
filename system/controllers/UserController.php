@@ -264,14 +264,10 @@
             $id_user = $request->getParsedBodyParam('id_user');
             $id_user_logedIn = $request->getParsedBodyParam('id_user_logedIn');
             
-            echo "<pre>";
-            var_dump($id_user, $id_user_logedIn);
-            exit();
-
-            $this->user->setFriendship($id_user, $id_user_logedIn);
+            $text_html = $this->user->setFriendship($id_user, $id_user_logedIn);
 
             $response_return['status'] = 1;
-            $response_return['text_html'] = "Deixar de seguir"; 
+            $response_return['text_html'] = $text_html; 
             return $response->withJson($response_return);
         }
     }

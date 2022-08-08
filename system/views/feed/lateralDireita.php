@@ -26,41 +26,21 @@
         </ul>
     </div>
     {/if}
-    <div class="fotos follows">
-    <p>Seguindo</p>
-        <ul>
-            <li>
-                <a href="{$url_base}feed/willi">
-                    <img src="{$url_base}resources/images/placeholder.png" alt="">
-                </a>
-            </li>
-            <li>
-                <a href="{$url_base}feed/willi">
-                    <img src="{$url_base}resources/images/placeholder.png" alt="">
-                </a>
-            </li>
-            <li>
-                <a href="{$url_base}feed/willi">
-                    <img src="{$url_base}resources/images/placeholder.png" alt="">
-                </a>
-            </li>
-            <li>
-                <a href="{$url_base}feed/willi">
-                    <img src="{$url_base}resources/images/placeholder.png" alt="">
-                </a>
-            </li>
-            <li>
-                <a href="{$url_base}feed/willi">
-                    <img src="{$url_base}resources/images/placeholder.png" alt="">
-                </a>
-            </li>
-            <li>
-                <a href="{$url_base}feed/willi">
-                    <img src="{$url_base}resources/images/placeholder.png" alt="">
-                </a>
-            </li>
-        </ul>
-    </div>
+
+    {if="$list_following"}
+        <div class="fotos follows">
+        <p>Seguindo</p>
+            <ul>
+                {loop="$list_following"}
+                <li>
+                    <a href="{$url_base}feed/{$value.profile_url}">
+                        <img src="{$value.user_avatar}" alt="">
+                    </a>
+                </li>
+                {/loop}
+            </ul>
+        </div>
+    {/if}
     <div class="footer">
         <div class="content">
             <p>Todos os Direitos Reservados {function="date('Y')"}</p>

@@ -9,11 +9,11 @@
                     </a>
                 </div>
                 <div class="info">
-                    <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?><?php echo htmlspecialchars( $value1["profile_url"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                    <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>feed/<?php echo htmlspecialchars( $value1["profile_url"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                         <p class="nome"><?php echo htmlspecialchars( $value1["user_name"], ENT_COMPAT, 'UTF-8', FALSE ); ?> <?php echo htmlspecialchars( $value1["user_lastName"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
                     </a>
                     <div class="bio">
-                        <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?><?php echo htmlspecialchars( $value1["profile_url"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                        <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>feed/<?php echo htmlspecialchars( $value1["profile_url"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                             <?php echo htmlspecialchars( $value1["user_description"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
                         </a>
                     </div>

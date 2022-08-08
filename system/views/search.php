@@ -9,11 +9,11 @@
                     </a>
                 </div>
                 <div class="info">
-                    <a href="{$url_base}{$value.profile_url}">
+                    <a href="{$url_base}feed/{$value.profile_url}">
                         <p class="nome">{$value.user_name} {$value.user_lastName}</p>
                     </a>
                     <div class="bio">
-                        <a href="{$url_base}{$value.profile_url}">
+                        <a href="{$url_base}feed/{$value.profile_url}">
                             {$value.user_description}
                         </a>
                     </div>

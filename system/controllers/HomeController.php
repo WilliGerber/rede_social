@@ -37,6 +37,8 @@ class HomeController
 
         Tpl::configure($config);
 
+        $this->default['modelUser'] = new User;
+
         $this->tpl = new Tpl;
 
         $camposUser = array(
@@ -56,8 +58,7 @@ class HomeController
         if(isset($_SESSION['user_logedIn']) && $_SESSION['user_logedIn'] != null) {
         // Apenas com usuario logado:
             // Construindo usuario
-            $user = new User();
-            $this->user_logedIn = ($user->selectUser($camposUser, array("id" => $_SESSION['user_logedIn']['id']) ))[0];
+            $this->user_logedIn = ($this->default['modelUser']->selectUser($camposUser, array("id" => $_SESSION['user_logedIn']['id']) ))[0];
 
             // Verificando imagem do usuário
             if ($this->user_logedIn['user_avatar'] == null || !is_file($this->user_logedIn['user_avatar'])) {
@@ -113,6 +114,9 @@ class HomeController
 
         $list_fotos = $this->default['modelFotos']->selectFotosRand((int)$_SESSION['user_logedIn']['id']);
 
+        $list_following = $this->default['modelUser']->selectFollowingRand((int)$_SESSION['user_logedIn']['id']);
+
+
         $this->default['footer'] = false;
         $info = array(
             'title_pagina' => 'Seu Feed',
@@ -124,6 +128,7 @@ class HomeController
             'user_logedIn' => $this->user_logedIn,
             'countMessages' => $this->default['listMessage']? count($this->default['listMessage']): $this->default['listMessage'] = null,
             'list_fotos' => $list_fotos,
+            'list_following' => $list_following,
             'search' => "",
         );
 
@@ -139,7 +144,6 @@ class HomeController
         UserController::verifyLogin();
 
         $this->default['footer'] = false;
-        $user = new User;
 
         $profile_url = $args['usuario'];
 
@@ -147,9 +151,6 @@ class HomeController
         if ($this->user_logedIn['profile_url'] == $profile_url) {
             $profileOwner = $this->user_logedIn;
         } else {
-            // echo "<pre>";
-            // var_dump($profile_url);
-            // exit();
             $campos = array(
                 "id",
                 "profile_url",
@@ -160,31 +161,34 @@ class HomeController
                 "user_password",
                 "user_avatar",
                 "user_description",
-                "date_update"
+                "date_update",
             );
            
             $where = array(
                 'profile_url' => $profile_url
             );
 
-            echo "<pre>";
-            var_dump('oi');
-
-            $profileOwner = $user->selectUser($campos, $where)[0];
-
-            echo "<pre>";
-            var_dump($profileOwner);
-            
-            if ($profileOwner['user_avatar'] == '' || !is_file($profileOwner['user_avatar'])) {
-                $profileOwner['user_avatar'] = /*URL_BASE.*/"resources/images/person-512.webp";
-            } else {
-                $profileOwner['user_avatar'] = /*URL_BASE.*/$profileOwner['user_avatar'];
-            }    
-
+            $profileOwner = $this->default['modelUser']->selectUser($campos, $where)[0];
             
         }
 
+        // Validação foto usuário
+        if ($profileOwner['user_avatar'] == '' || !is_file($profileOwner['user_avatar'])) {
+            $profileOwner['user_avatar'] = /*URL_BASE.*/"resources/images/person-512.webp";
+        } else {
+            $profileOwner['user_avatar'] = /*URL_BASE.*/$profileOwner['user_avatar'];
+        }
+
+        // Validação se user_logedIn está seguindo profile
+        if($profileOwner['id'] != $this->user_logedIn['id']){
+            $profileOwner['friendship'] = $this->default['modelUser']->getFriendship($profileOwner['id'], $this->user_logedIn['id']);
+        }
+
+        // Criando listagem de fotos
         $list_fotos = $this->default['modelFotos']->selectFotosRand((int)$profileOwner['id']);
+
+        // Selecionando seguidores aleatoriamente para listar na lateral
+        $list_following = $this->default['modelUser']->selectFollowingRand((int)$profileOwner['id']);
 
         $info = array(
             'title_pagina' => 'Feed de '.$profileOwner['user_name'],
@@ -197,7 +201,10 @@ class HomeController
             'countMessages' => $this->default['listMessage']? count($this->default['listMessage']): $this->default['listMessage'] = null,
             'list_fotos' => $list_fotos,
             'search' => "",
+            'list_following' => $list_following,
         );
+        // var_dump($list_following);
+        // exit();
         $this->setTpl('header', $info);
         $this->setTpl('feed/inicioCentral', array('classPrincipal' => 'feed'));
         $this->setTpl('feed/lateralEsquerda');
@@ -234,10 +241,12 @@ class HomeController
         $this->default['footer'] = false;
         $list_fotos = $this->default['modelFotos']->selectFotosRand((int)$_SESSION['user_logedIn']['id']);
 
+        // Selecionando seguidores aleatoriamente para listar na lateral
+        $list_following = $this->default['modelUser']->selectFollowingRand((int)$_SESSION['user_logedIn']['id']);
+
         $search = $_GET['q'];
 
-        $user = new User;
-        $result_search = $user->getSearch($search);
+        $result_search = $this->default['modelUser']->getSearch($search);
 
         $info = array(
             'title_pagina' => 'Pesquisa',
@@ -249,6 +258,7 @@ class HomeController
             'user_logedIn' => $this->user_logedIn,
             'countMessages' => $this->default['listMessage']? count($this->default['listMessage']): $this->default['listMessage'] = null,
             'list_fotos' => $list_fotos,
+            'list_following' => $list_following,
             'result_search' => $result_search,
             'search' => $search,
         );
@@ -279,9 +289,7 @@ class HomeController
             'list_fotos' => $list_fotos,
             'search' => "",
         );
-        // echo "<pre>";
-        // var_dump($info);
-        // exit();
+
         $this->setTpl('header', $info);
         $this->setTpl('feed/inicioCentral', array('classPrincipal' => 'mensagens'));
         $this->setTpl('feed/lateralEsquerda');

@@ -9,7 +9,7 @@
             </a>
 
             {if="$user_logedIn['id'] != $user['id']"}
-                <button class="btn-seguir">Seguir</button>
+                <button class="btn-seguir">{$user['friendship']}</button>
                 <input type="hidden" value="{$user['id']}">
                 <input type="hidden" value="{$user_logedIn['id']}">
             {/if}

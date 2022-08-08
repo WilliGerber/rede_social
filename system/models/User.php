@@ -18,6 +18,17 @@
             "date_update"
         ];
 
+        // function checkUserAvatar($user_avatar){
+        //     if ($user_avatar == '' || !is_file($user_avatar)) {
+        //         $user_avatar = URL_BASE."resources/images/person-512.webp";
+                
+        //     } else {
+        //         $user_avatar = URL_BASE.$user_avatar;
+        //     } 
+                
+        //     return $user_avatar;
+        // }
+
         function insertUser($campos) {
             // var_dump('insertUser');
             $this->insert($this->table, $campos);
@@ -32,9 +43,6 @@
         }
 
         function selectUser($campos, $where):array { 
-            // echo "<pre>";
-            // var_dump($campos, $where);
-            // exit();
             $userSelection = $this->select($this->table, $campos, $where);
             return $userSelection;
         }
@@ -68,10 +76,72 @@
 
         function getSearch($search){
             $sql = "SELECT * FROM ".$this->table." WHERE user_name LIKE '%".$search."%' OR user_lastName LIKE '%".$search."%' ORDER BY user_name ASC";
-            
-            $params = array(':search' => $search);
             $result = $this->querySelect($sql);
 
+            $users = array();
+            foreach ($result as $user){
+                if ($user['user_avatar'] == '' || !is_file($user['user_avatar'])) {
+                    $user['user_avatar'] = URL_BASE."resources/images/person-512.webp";
+                    
+                } else {
+                    $user['user_avatar'] = URL_BASE.$user['user_avatar'];
+                } 
+                
+                $users[] = $user;
+            };
+
+            return $users;
+        }
+
+        function setFriendship($id_user, $id_user_logedIn) {
+
+            $fields = array('id');
+            $where = array(
+                'id_follower' => $id_user_logedIn,
+                'id_following' => $id_user
+            );
+
+            $response = $this->select('friends', $fields, $where);
+
+            if($response){
+                $sql = "DELETE FROM friends WHERE id_follower = :id_user_logedIn AND id_following = :id_user";
+                $params = array(':id_user' => $id_user, ':id_user_logedIn' => $id_user_logedIn);
+
+                $this->querySelect($sql, $params);
+
+                return "Seguir";
+            } else {
+                $sql = "INSERT INTO friends (id_follower, id_following) VALUES (:id_user_logedIn, :id_user)";
+                $params = array(':id_user' => $id_user, ':id_user_logedIn' => $id_user_logedIn);
+
+                $this->querySelect($sql, $params);
+
+                return "Deixar de seguir";
+            }
+        }
+
+        function getFriendship($id_user, $id_user_logedIn) {
+            $fields = array('id');
+            $where = array(
+                'id_follower' => $id_user_logedIn,
+                'id_following' => $id_user
+            );
+
+            $response = $this->select('friends', $fields, $where);
+
+            if($response) {
+                return "Deixar de seguir";
+            } else {
+                return "Seguir";
+            }
+        }
+
+        function selectFollowingRand($id_user, $limit=6){
+            $sql = "SELECT u.user_name, u.user_avatar, u.profile_url FROM friends f INNER JOIN ".$this->table." u ON u.id = f.id_following WHERE f.id_follower = :id_user ORDER BY RAND() LIMIT " .$limit;
+            
+            $params = array(':id_user' => $id_user);
+            $result = $this->querySelect($sql, $params);
+            
             $users = array();
             foreach ($result as $user){
                 

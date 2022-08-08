@@ -21,9 +21,10 @@ $app->post('/cadastrar', '\DEV\Controllers\UserController:cadastrar');
 $app->post('/login', '\DEV\Controllers\UserController:user_login');
 $app->post('/about_me', '\DEV\Controllers\UserController:about_me');
 $app->post('/configuracao', '\DEV\Controllers\UserController:configuracao');
+$app->post('/setFriendship', '\DEV\Controllers\UserController:setFriendship');
+
 // get
 $app->get('/logout', '\DEV\Controllers\UserController:logout');
-$app->get('/setFriendship', '\DEV\Controllers\UserController:setFriendship');
 
 
 
