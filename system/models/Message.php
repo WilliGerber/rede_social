@@ -68,8 +68,6 @@
                 }
             }
         
-            
-
             unset($id_show[0]);
 
             for ($m=0; $m < count($messages) ; $m++) { 

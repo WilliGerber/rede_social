@@ -16,12 +16,12 @@ $(document).ready(function(){
   reader.onload = function (e) {
     $('#img-config').css('background-image', "url("+e.target.result+")");
     $('#img-config').attr('src',"");
-   }
+   };
 
   function readURL(input) {
     if (input.files && input.files[0]) {
       reader.readAsDataURL(input.files[0]);
-    }
+    };
   }
 
   //Alterar imagem pagina fotos na seleção das miniaturas
@@ -29,6 +29,7 @@ $(document).ready(function(){
     readURL(this);
   });
 
+  // Setar pagina fotos 
   $(".img_thumb").on('click', function() {
     var cover = $('.img_cover');
     var thumb = $(this).attr('src');
@@ -37,23 +38,25 @@ $(document).ready(function(){
       cover.fadeTo('200', '0', function() {
         cover.attr('src', thumb);
         cover.fadeTo('150', '1');
-      })
+      });
     }
     $(".img_thumb.active").removeClass('active');
     $(this).addClass('active');
-  })
+  });
 
   //Ativar/desativar lightbox de nova postagem
   $('.publicar .exibir').on('click', function(){
     $(this).next().addClass('active');
     $('body').addClass('active-lightbox')
-  })
+  });
 
+  // LightBox close
   $('.lightbox .close').on('click', function(){
     $(this).parent().removeClass('active');
     $('body').removeClass('active-lightbox');
-  })
+  });
 
+  // set slider gallery
   if($('.content.feed').length) {
     var page_index = $('#page_index').val();
     var user_id = $('#user_id').val();
@@ -71,7 +74,7 @@ $(document).ready(function(){
             });  
         } 
       }
-    }
+    };
   
 
     function getPublishes(page_index, user_id, feed=true) {
@@ -87,18 +90,31 @@ $(document).ready(function(){
           var html = "";
 
           $.each(response.publishes, function(i, pub){
-              html += '<div class="item" id="' + pub.id + '">'+
+              html += '<div class="item" id="' + pub.id + '">';
+                        if(pub.user_lastName != null) {
+                          html += '<div class="topo">'+
+                              '<a href="' + url_base + 'feed/'+pub.profile_url+'">'+
+                                  '<img src="' + url_base + pub.user_avatar + '" alt="Foto de ' + pub.user_name + ' ' + pub.user_lastName + '">'+
+                              '</a>'+
+                              '<a href="' + url_base + 'feed/' + pub.profile_url + '">'+
+                                  '<span>'+ pub.user_name +' '+ pub.user_lastName +'</span>'+
+                              '</a>'+
+                          '</div>'+
+  
+                          '<div class="info">';
 
-                        '<div class="topo">'+
-                            '<a href="' + url_base + 'feed/'+pub.profile_url+'">'+
-                                '<img src="' + url_base + pub.user_avatar + '" alt="Foto de ' + pub.user_name + ' ' + pub.user_lastName + '">'+
-                            '</a>'+
-                            '<a href="' + url_base + 'feed/' + pub.profile_url + '">'+
-                                '<span>'+ pub.user_name +' '+ pub.user_lastName +'</span>'+
-                            '</a>'+
-                        '</div>'+
-
-                        '<div class="info">';
+                        } else {
+                          html += '<div class="topo">'+
+                              '<a href="' + url_base + 'feed/'+pub.profile_url+'">'+
+                                  '<img src="' + url_base + pub.user_avatar + '" alt="Foto de ' + pub.user_name + '">'+
+                              '</a>'+
+                              '<a href="' + url_base + 'feed/' + pub.profile_url + '">'+
+                                  '<span>'+ pub.user_name +'</span>'+
+                              '</a>'+
+                          '</div>'+
+  
+                          '<div class="info">';
+                        }
                         if(pub.text != null){
                           html += '<div class="text">'+
                                     pub.text +
@@ -130,7 +146,7 @@ $(document).ready(function(){
 
         }
       });
-    }
+    };
     getPublishes(page_index, user_id, feed);
     // alert(user_id);
 
@@ -148,13 +164,15 @@ $(document).ready(function(){
     })
   }
 
+  // get mensagens chat
+  var messages = []
   if ($('.lista_mensagens').length){
     function getChat() {
       setInterval(function(){
         $('.lista_mensagens .item.active').click();
-      }, 1000);
+      }, 1000)
     }
-
+    
     $('.lista_mensagens .item').on('click', function (){
       $('.content.mensagens .conteudo.oculto').removeClass('oculto');
 
@@ -174,6 +192,8 @@ $(document).ready(function(){
           $('.content.mensagens .conteudo .msgs .form_ajax .id_user_receive').val(response.id_otherUser);
 
           var html = "";
+          messages = response.messages;
+          console.log(messages)
 
           $.each(response.messages, function(i, msg){
             if(msg.id_sender == response.id_logedIn) {
@@ -186,6 +206,7 @@ $(document).ready(function(){
           });
 
           $('.conteudo_mensagem .lista_msg').html(html);
+
           $('.conteudo_mensagem .lista_msg').click($('.conteudo_mensagem .lista_msg').animate({scrollTop: response.messages.length * 50}, '1000'));
         }
       });
@@ -193,7 +214,6 @@ $(document).ready(function(){
 
     if ($('.lateral_esquerda .lista_mensagens .item').length) {
       $('.lateral_esquerda .lista_mensagens .item:eq(0)').click();
-      $('.lateral_esquerda .lista_mensagens .item:eq(0)').click($('.lateral_esquerda .lista_mensagens .item:eq(0)').animate({scrollTop: response.messages.length * 50}, '1000'));
       getChat();
     }
   }

@@ -168,4 +168,5 @@ class Sql {
 		
 		$this->query("UPDATE $table SET $sqlValues WHERE $sqlWhere", $parans);
 	}
-}?>
+}
+?>

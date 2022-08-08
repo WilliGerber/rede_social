@@ -18,17 +18,6 @@
             "date_update"
         ];
 
-        // function checkUserAvatar($user_avatar){
-        //     if ($user_avatar == '' || !is_file($user_avatar)) {
-        //         $user_avatar = URL_BASE."resources/images/person-512.webp";
-                
-        //     } else {
-        //         $user_avatar = URL_BASE.$user_avatar;
-        //     } 
-                
-        //     return $user_avatar;
-        // }
-
         function insertUser($campos) {
             // var_dump('insertUser');
             $this->insert($this->table, $campos);
@@ -158,6 +147,4 @@
             return $users;
         }
     }
-
-    
 ?>

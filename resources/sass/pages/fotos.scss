@@ -18,9 +18,18 @@
                 width: 100%;
                 display: inline-flex;
 
-                margin-bottom: 30px;
                 align-items: center;
                 justify-content: center;
+                p {
+                    color: #646464;
+                    font-size: 18px;
+                    line-height: 1.8;
+                    a {
+                        color: $color_destaque;
+                        font-weight: bold;
+                        font-size: 16px;
+                    }
+                }
                 .img_cover {
                     background-color: #dfdfdf;
                     max-width: 100%;
@@ -29,6 +38,7 @@
                 }
             }
             .thumbs {
+                margin-top: 30px;
                 width: 100%;
                 display: grid;
                 grid-template-columns: 1fr 1fr 1fr;

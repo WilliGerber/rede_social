@@ -5,7 +5,6 @@ use Rain\Tpl;
 use DEV\Controllers\UserController;
 use DEV\User;
 use DEV\Message;
-use DEV\Publish;
 use DEV\Fotos;
 
 if(!isset($_SESSION)) {
@@ -53,7 +52,6 @@ class HomeController
             "user_description",
             "date_update"
         );
-
 
         if(isset($_SESSION['user_logedIn']) && $_SESSION['user_logedIn'] != null) {
         // Apenas com usuario logado:
@@ -167,7 +165,9 @@ class HomeController
             $where = array(
                 'profile_url' => $profile_url
             );
-
+            // echo "<pre>";
+            // var_dump($this->default['modelUser']->selectUser($campos, $where));
+            // exit();
             $profileOwner = $this->default['modelUser']->selectUser($campos, $where)[0];
             
         }

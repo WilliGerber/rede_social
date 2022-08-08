@@ -136,11 +136,11 @@
                         display: block;
                         margin-bottom: 30px;
                     }
-                    .galeria {
+                    .gallery {
                         width: 100%;
                         background-color: #dfdfdf;
                         img {
-                            width: 100%;
+                            max-width: 100%;
                             display: block;
                         }
                     }
