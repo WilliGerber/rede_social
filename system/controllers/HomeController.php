@@ -300,7 +300,6 @@ class HomeController
     public function fotos(){
         UserController::verifyLogin();
 
-
         $fields = array (
             "id",
             "foto_path"
@@ -323,6 +322,79 @@ class HomeController
             'countMessages' => $this->default['listMessage']? count($this->default['listMessage']): $this->default['listMessage'] = null,
             'fotos' => $result_fotos,
             'search' => ""
+        );
+
+        $this->setTpl('header', $info);
+        $this->setTpl('feed/inicioCentral', array('classPrincipal' => 'minhas_fotos'));
+        $this->setTpl('feed/lateralEsquerda');
+        $this->setTpl('fotos');
+        $this->setTpl('feed/finalCentral');
+    }
+
+    public function foreing_fotos($request, $response, $args){
+        UserController::verifyLogin();
+
+        //Selecionar usuário proprietario da página
+        $fields = array(
+            "id",
+            "profile_url",
+            "user_name",
+            "user_lastName",
+            "user_email",
+            "user_phone",
+            "user_password",
+            "user_avatar",
+            "user_description",
+            "date_update",
+        );
+
+        $profile_url = $args['usuario'];
+        $where = array (
+            "profile_url" => $profile_url
+        );
+
+        $user = $this->default['modelUser']->selectUser($fields, $where)[0];
+
+        //Selecionar fotos
+        $fields = array (
+            "id",
+            "foto_path"
+        );
+
+        $where = array (
+            "id_user" => $user['id']
+        );
+
+        $result_fotos = $this->default['modelFotos']->selectFotos($fields, $where);
+
+        // Validação se user_logedIn é igual ao proprietario da pagina
+        $links = true;
+        if($user['id'] != $this->user_logedIn['id']){
+            //está seguindo profile?
+            $user['friendship'] = $this->default['modelUser']->getFriendship($user['id'], $this->user_logedIn['id']);
+
+            //Configurar menu links
+            $links = false;
+        }
+
+        // Validação foto usuário
+        if ($user['user_avatar'] == '' || !is_file($user['user_avatar'])) {
+            $user['user_avatar'] = /*URL_BASE.*/"resources/images/person-512.webp";
+        } else {
+            $user['user_avatar'] = /*URL_BASE.*/$user['user_avatar'];
+        }
+
+        $info = array(
+            'title_pagina' => 'Feed de '.$user['user_name'],
+            'header_login' => $this->default['header_login'],
+            'url_base' => URL_BASE,
+            'links' => $links,
+            'page_mensagens' => $this->default['page_mensagens'],
+            'user' => $user,
+            'user_logedIn' => $this->user_logedIn,
+            'countMessages' => $this->default['listMessage']? count($this->default['listMessage']): $this->default['listMessage'] = null,
+            'search' => "",
+            'fotos' => $result_fotos,
         );
 
         $this->setTpl('header', $info);

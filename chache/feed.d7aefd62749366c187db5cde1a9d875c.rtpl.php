@@ -7,12 +7,18 @@
         <div class="lightbox">
             <span class="close"></span>
             <form class="form_ajax" action="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>publish" method="post" enctype="multipart/form-data">
-                <textarea name="message" placeholder="Nova Publicação" id="" cols="30" rows="10"></textarea>
-                <label for="imagem">
-                    <span>Imagens</span>
-                    <input id="imagem" type="file" name="imagem[]" multiple accept="image/*">
-                </label>
-                <input type="submit" value="Publicar">
+                <div class="inputs">
+                    <textarea name="message" placeholder="Nova Publicação" id="" cols="30" rows="10"></textarea>
+                    <label for="imagem">
+                        <span>Imagens</span>
+                        <input id="imagem" type="file" name="imagem[]" multiple accept="image/*">
+                    </label>
+
+                    <input type="submit" value="Publicar">
+                </div>
+                
+                <div id="preview"></div>
+
             </form>
         </div>
     </section>
@@ -23,4 +29,16 @@
     <input type="hidden" name="" id="page_index" value="1">
     <input type="hidden" id="user_id" value="<?php echo htmlspecialchars( $user_logedIn['id'], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
     <input type="hidden" id="feed" value="true">
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+    <!-- <script>
+        var loadFile = function(event) {
+        var reader = new FileReader();
+        reader.onload = function(){
+        var output = document.getElementById('output');
+        output.src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    };
+    </script> -->
 </div>

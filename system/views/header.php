@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{$title_pagina}</title>
     <link rel="stylesheet" href="{$url_base}resources/css/css.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <script src="{$url_base}resources/js/jquery/jquery.min.js"></script>
     <script src="{$url_base}resources/js/jquery.mask/jquery.mask.min.js"></script>
@@ -36,7 +37,7 @@
                 <div class="pesquisa">
                     <form action="search" method="get">
                         <input type="text" name="q" placeholder="pesquisar" value="{$search}">
-                        <input type="submit" value="?">
+                        <input type="submit" value="">
                     </form>
                 </div>
                 <div class="pessoal">

@@ -17,12 +17,24 @@
         </a>
         <ul>
             {loop="$list_fotos"}
-            <li>
-                <a href="{$url_base}fotos">
-                    <img src="{$url_base}{$value.foto_path}" alt="">
-                </a>
-            </li>
-            {/loop}
+                <li>
+                    <a href="{$url_base}{$user['profile_url']}/fotos">
+                        <img src="{$url_base}{$value.foto_path}" alt="">
+                    </a>
+                </li>       
+            {/loop} 
+            <!-- {if="$user_logedIn['id'] == $user['id']"}
+                {loop="$list_fotos"}
+                    <li>
+                        <a href="{$url_base}fotos">
+                            <img src="{$url_base}{$value.foto_path}" alt="">
+                        </a>
+                    </li>       
+                {/loop}
+            {else}
+                {$user['']}
+            {/if} -->
+        
         </ul>
     </div>
     {/if}

@@ -1,7 +1,7 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?><div class="conteudo">
     <section class="configuracoes">
         <form class="form_ajax" action="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>configuracao" method="post" enctype="multipart/form-data"s>
-            <label for="campo-img">
+            <label for="campo-img" class="campo-img">
                 <img src="<?php echo htmlspecialchars( $user['user_avatar'], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="Foto de Pefil" id="img-config">
                 <input type="file" id="campo-img" name="image">
             </label>

@@ -101,9 +101,14 @@ header {
                     }
                     input[type="submit"] {
                         margin: 0;
-                        margin-left: -47px;
-                        font-size: 25px;
+                        margin-left: -40px;
+                        margin-top: -2px;
+                        padding: 22px;
                         font-family: 'Montserrat regular';
+                        background-image: url(../../resources/images/magnifying-glass-solid.svg);
+                        background-size: 25px;
+                        background-repeat: no-repeat;
+                        background-position: center;
                     }
                 }
             }

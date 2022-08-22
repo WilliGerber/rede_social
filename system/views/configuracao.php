@@ -1,7 +1,7 @@
 <div class="conteudo">
     <section class="configuracoes">
         <form class="form_ajax" action="{$url_base}configuracao" method="post" enctype="multipart/form-data"s>
-            <label for="campo-img">
+            <label for="campo-img" class="campo-img">
                 <img src="{$user['user_avatar']}" alt="Foto de Pefil" id="img-config">
                 <input type="file" id="campo-img" name="image">
             </label>

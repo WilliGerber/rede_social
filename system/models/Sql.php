@@ -44,9 +44,7 @@ class Sql {
 	{
 
 		$stmt = $this->conn->prepare($rawQuery);
-		// var_dump($this->conn->prepare($rawQuery));
 		$this->setParams($stmt, $params);
-		// var_dump($stmt);
 		$stmt->execute();
 
 	}

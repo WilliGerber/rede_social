@@ -17,12 +17,24 @@
         </a>
         <ul>
             <?php $counter1=-1;  if( isset($list_fotos) && ( is_array($list_fotos) || $list_fotos instanceof Traversable ) && sizeof($list_fotos) ) foreach( $list_fotos as $key1 => $value1 ){ $counter1++; ?>
-            <li>
-                <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>fotos">
-                    <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?><?php echo htmlspecialchars( $value1["foto_path"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="">
-                </a>
-            </li>
-            <?php } ?>
+                <li>
+                    <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?><?php echo htmlspecialchars( $user['profile_url'], ENT_COMPAT, 'UTF-8', FALSE ); ?>/fotos">
+                        <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?><?php echo htmlspecialchars( $value1["foto_path"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="">
+                    </a>
+                </li>       
+            <?php } ?> 
+            <!-- <?php if( $user_logedIn['id'] == $user['id'] ){ ?>
+                <?php $counter1=-1;  if( isset($list_fotos) && ( is_array($list_fotos) || $list_fotos instanceof Traversable ) && sizeof($list_fotos) ) foreach( $list_fotos as $key1 => $value1 ){ $counter1++; ?>
+                    <li>
+                        <a href="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?>fotos">
+                            <img src="<?php echo htmlspecialchars( $url_base, ENT_COMPAT, 'UTF-8', FALSE ); ?><?php echo htmlspecialchars( $value1["foto_path"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="">
+                        </a>
+                    </li>       
+                <?php } ?>
+            <?php }else{ ?>
+                <?php echo htmlspecialchars( $user[''], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+            <?php } ?> -->
+        
         </ul>
     </div>
     <?php } ?>

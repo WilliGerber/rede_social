@@ -253,12 +253,14 @@
 
             $this->user->updateUser($values, $where);
             
-            if($user['password'] !== "") {
+            
+
+            if($user['password'] != '') {
                 $this->login($user['email'], $user['password']);
             } else {
                 $result = $this->user->selectUser($values, $where);
                 $this->user->setData($result);
-                $_SESSION['user_logedIn'] = $this->user->getValues();
+                $this->login($user['email'], $user['password']);
             }
 
             $response_return['status'] = 1;
